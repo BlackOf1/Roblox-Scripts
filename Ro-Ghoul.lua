@@ -148,11 +148,13 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                             if PotentialTarget.Name == "Human" or PotentialTarget.Name == "Athlete" and game:GetService("Players").LocalPlayer.Character ~= nil  then 
                                 Rquip(Faction)
                                 local Target = PotentialTarget 
+                                pcall(function()
                                 local Play,Time = GoTo(Target:FindFirstChild("HumanoidRootPart"),150)
                                 local Math = Time/3.5
                                 Play:Play()
                                 wait(Time-Math)
                                 Play:Cancel()
+                                end)
                                 repeat
                                     wait()
                                     if Target:FindFirstChild("HumanoidRootPart") ~= nil and On == true  then 
@@ -209,11 +211,13 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                 if string.match(PotentialTarget.Name,"Aogiri") then
                                     Rquip(Faction)
                                     local Target = PotentialTarget 
-                                    local Play,Time = GoTo(Target:FindFirstChild("HumanoidRootPart"),150)
-                                    local Math = Time/3.5
-                                    Play:Play()
-                                    wait(Time-Math)
-                                    Play:Cancel()
+                                    pcall(function()
+                                        local Play,Time = GoTo(Target:FindFirstChild("HumanoidRootPart"),150)
+                                        local Math = Time/3.5
+                                        Play:Play()
+                                        wait(Time-Math)
+                                        Play:Cancel()
+                                        end)
                                     repeat
                                         wait()
                                         if Target:FindFirstChild("HumanoidRootPart") ~= nil and On == true  then 
@@ -273,11 +277,13 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                 if string.match(PotentialTarget.Name,"Investigator") then
                                     Rquip(Faction)
                                     local Target = PotentialTarget 
-                                    local Play,Time = GoTo(Target:FindFirstChild("HumanoidRootPart"),150)
-                                    local Math = Time/3.5
-                                    Play:Play()
-                                    wait(Time-Math)
-                                    Play:Cancel()
+                                    pcall(function()
+                                        local Play,Time = GoTo(Target:FindFirstChild("HumanoidRootPart"),150)
+                                        local Math = Time/3.5
+                                        Play:Play()
+                                        wait(Time-Math)
+                                        Play:Cancel()
+                                        end)
                                     repeat
                                         wait()
                                         if Target:FindFirstChild("HumanoidRootPart") ~= nil and On == true  then 
