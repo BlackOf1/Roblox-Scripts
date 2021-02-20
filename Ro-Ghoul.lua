@@ -194,8 +194,9 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                 until Target == nil and On == true 
                                 wait(.5)
                                 local OldName = v.Name 
-                                local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
-                                pcall(function()
+                                pcall(function()   
+                                    local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
+                                    game.Player.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = Target:FindFirstChild("HumanoidRootPart").CFrame
                                     fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
                                 end)
                                 wait(1.75)
@@ -252,8 +253,9 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                     until Target == nil and On == true 
                                     wait(.5)
                                     local OldName = v.Name 
-                                    local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
-                                    pcall(function()
+                                    pcall(function()   
+                                        local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
+                                        game.Player.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = Target:FindFirstChild("HumanoidRootPart").CFrame
                                         fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
                                     end)
                                     wait(1.75)
@@ -311,8 +313,9 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                     until Target == nil and On == true 
                                     wait(.5)
                                     local OldName = v.Name 
-                                    local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
-                                    pcall(function()
+                                    pcall(function()   
+                                        local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
+                                        game.Player.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = Target:FindFirstChild("HumanoidRootPart").CFrame
                                         fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
                                     end)
                                     wait(1.75)
