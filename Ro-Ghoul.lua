@@ -195,7 +195,9 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                 wait(.5)
                                 local OldName = v.Name 
                                 local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
-                                fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
+                                pcall(function()
+                                    fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
+                                end)
                                 wait(1.75)
                             end 
                         elseif Mob == "Ghouls" and On == true  then 
@@ -251,7 +253,9 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                     wait(.5)
                                     local OldName = v.Name 
                                     local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
-                                    fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
+                                    pcall(function()
+                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
+                                    end)
                                     wait(1.75)
                                 end 
                             end 
@@ -308,7 +312,9 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                     wait(.5)
                                     local OldName = v.Name 
                                     local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
-                                    fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
+                                    pcall(function()
+                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
+                                    end)
                                     wait(1.75)
                                 end 
                             end 
