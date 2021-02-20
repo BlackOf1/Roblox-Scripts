@@ -196,7 +196,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                 local OldName = v.Name 
                                 pcall(function()   
                                     local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
-                                    game.Player.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = Target:FindFirstChild("HumanoidRootPart").CFrame
+                                    game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = Target:FindFirstChild("HumanoidRootPart").CFrame
                                     fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
                                 end)
                                 wait(1.75)
@@ -255,7 +255,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                     local OldName = v.Name 
                                     pcall(function()   
                                         local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
-                                        game.Player.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = Target:FindFirstChild("HumanoidRootPart").CFrame
+                                        game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = Target:FindFirstChild("HumanoidRootPart").CFrame
                                         fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
                                     end)
                                     wait(1.75)
@@ -315,7 +315,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                     local OldName = v.Name 
                                     pcall(function()   
                                         local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
-                                        game.Player.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = Target:FindFirstChild("HumanoidRootPart").CFrame
+                                        game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = Target:FindFirstChild("HumanoidRootPart").CFrame
                                         fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
                                     end)
                                     wait(1.75)
