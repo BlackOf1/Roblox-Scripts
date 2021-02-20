@@ -71,7 +71,7 @@ function FireRemote(arg)
     end)
 end
 
-function Rquip()
+function Rquip(Faction)
     if Faction == "Ghoul" and game:GetService("Players").LocalPlayer.Character ~= nil then 
         if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Kagune") == nil then 
             local args = {
@@ -146,7 +146,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                         local PotentialTarget = v:FindFirstChildOfClass("Model") 
                         if  Mob == "Humans" and On == true  then 
                             if PotentialTarget.Name == "Human" or PotentialTarget.Name == "Athlete" and game:GetService("Players").LocalPlayer.Character ~= nil  then 
-                                Rquip()
+                                Rquip(Faction)
                                 local Target = PotentialTarget 
                                 local Play,Time = GoTo(Target:FindFirstChild("HumanoidRootPart"),150)
                                 local Math = Time/3.5
@@ -157,7 +157,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                     wait()
                                     if Target:FindFirstChild("HumanoidRootPart") ~= nil and On == true  then 
                                         pcall(function()
-                                            Rquip()
+                                            Rquip(Faction)
                                             nmyhrp = Target:FindFirstChild("HumanoidRootPart").CFrame
                                         end)
                                         if game:GetService("Players").LocalPlayer.Character ~= nil and Target ~= nil and nmyhrp and On == true  then 
@@ -201,7 +201,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                         elseif Mob == "Ghouls" and On == true  then 
                             if v.Name == "AggroSpawns" or v.Name == "GhoulSpawns" and game:GetService("Players").LocalPlayer.Character ~= nil then 
                                 if string.match(PotentialTarget.Name,"Aogiri") then
-                                    Rquip()
+                                    Rquip(Faction)
                                     local Target = PotentialTarget 
                                     local Play,Time = GoTo(Target:FindFirstChild("HumanoidRootPart"),150)
                                     local Math = Time/3.5
@@ -213,7 +213,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                         if Target:FindFirstChild("HumanoidRootPart") ~= nil and On == true  then 
                                             local nmyhrp = nil
                                             pcall(function()
-                                                Rquip()
+                                                Rquip(Faction)
                                                 nmyhrp = Target:FindFirstChild("HumanoidRootPart").CFrame
                                             end)
                                             if game:GetService("Players").LocalPlayer.Character ~= nil and Target ~= nil and nmyhrp and On == true  then 
@@ -258,7 +258,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                         elseif Mob == "CCG" and On == true then
                             if v.Name == "AggroSpawns" or v.Name == "CCGSpawns" and game:GetService("Players").LocalPlayer.Character ~= nil then 
                                 if string.match(PotentialTarget.Name,"Investigator") then
-                                    Rquip()
+                                    Rquip(Faction)
                                     local Target = PotentialTarget 
                                     local Play,Time = GoTo(Target:FindFirstChild("HumanoidRootPart"),150)
                                     local Math = Time/3.5
@@ -270,7 +270,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                         if Target:FindFirstChild("HumanoidRootPart") ~= nil and On == true  then 
                                             local nmyhrp = nil
                                             pcall(function()
-                                                Rquip()
+                                                Rquip(Faction)
                                                 nmyhrp = Target:FindFirstChild("HumanoidRootPart").CFrame
                                             end)
                                             if game:GetService("Players").LocalPlayer.Character ~= nil and Target ~= nil and nmyhrp and On == true  then 
