@@ -176,7 +176,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                                 if game:GetService("Players").LocalPlayer.Character ~= nil and nmyhrp and On == true  then
                                                     break 
                                                 end 
-                                                if  game:GetService("Players").LocalPlayer.Character ~= nil and On == true  then 
+                                                if  game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") ~= nil and On == true  then 
                                                     if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Shirt") then 
                                                         DestroyThingz()
                                                     end 
@@ -197,10 +197,10 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                 pcall(function()   
                                     local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
                                     game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = Target:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0,0,1)
-                                    fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
-                                    fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
-                                    fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
-                                    fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
+                                    fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"),35)
+                                    fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"),35)
+                                    fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"),35)
+                                    fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"),35)
                                 end)
                                 wait(1.75)
                             end 
@@ -238,7 +238,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                                     if game:GetService("Players").LocalPlayer.Character ~= nil and nmyhrp and On == true  then
                                                         break 
                                                     end 
-                                                    if  game:GetService("Players").LocalPlayer.Character ~= nil and On == true  then 
+                                                    if  game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") ~= nil and On == true  then 
                                                         if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Shirt") then 
                                                             DestroyThingz()
                                                         end 
@@ -259,11 +259,11 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                     pcall(function()   
                                         local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
                                         game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = Target:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0,0,1)
-                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
-                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
-                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
-                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
-                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
+                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"),35)
+                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"),35)
+                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"),35)
+                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"),35)
+                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"),35)
                                     end)
                                     wait(1.75)
                                 end 
@@ -302,7 +302,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                                     if game:GetService("Players").LocalPlayer.Character ~= nil and nmyhrp and On == true  then
                                                         break 
                                                     end 
-                                                    if  game:GetService("Players").LocalPlayer.Character ~= nil and On == true  then 
+                                                    if  game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") ~= nil and On == true  then 
                                                         if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Shirt") then 
                                                             DestroyThingz()
                                                         end 
@@ -323,11 +323,11 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                     pcall(function()   
                                         local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
                                         game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = Target:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(0,0,1)
-                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
-                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
-                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
-                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
-                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
+                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"),35)
+                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"),35)
+                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"),35)
+                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"),35)
+                                        fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"),35)
                                     end)
                                     wait(1.75)
                                 end 
