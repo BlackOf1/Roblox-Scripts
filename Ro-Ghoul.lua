@@ -194,7 +194,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                         break
                                     end 
                                 until Target == nil and On == true 
-                                wait(.55)
+                                wait(.60)
                                 local OldName = v.Name 
                                 pcall(function()   
                                     local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
@@ -208,7 +208,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                     fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
                                     fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
                                 end)
-                                wait(1.75)
+                                wait(1.78)
                             end 
                         elseif Mob == "Ghouls" and On == true  then 
                             if v.Name == "AggroSpawns" or v.Name == "GhoulSpawns" and game:GetService("Players").LocalPlayer.Character ~= nil then 
@@ -262,7 +262,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                             break
                                         end 
                                     until Target == nil and On == true 
-                                    wait(.55)
+                                    wait(.60)
                                     local OldName = v.Name 
                                     pcall(function()   
                                         local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
@@ -282,7 +282,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                         fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
                                         fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector")) 
                                     end)
-                                    wait(1.75)
+                                    wait(1.78)
                                 end 
                             end 
                         elseif Mob == "CCG" and On == true then
@@ -337,7 +337,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                             break
                                         end 
                                     until Target == nil and On == true 
-                                    wait(.55)
+                                    wait(.60)
                                     local OldName = v.Name 
                                     pcall(function()   
                                         local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
@@ -357,7 +357,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                         fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
                                         fireclickdetector(Target:FindFirstChild("ClickPart"):FindFirstChildOfClass("ClickDetector"))
                                     end)
-                                    wait(1.75)
+                                    wait(1.78)
                                 end 
                             end 
                         else 
