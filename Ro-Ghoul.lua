@@ -156,7 +156,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                 Play:Cancel()
                                 end)
                                 repeat
-                                    wait()
+                                    game:GetService("RunService").RenderStepped:Wait()
                                     if Target:FindFirstChild("HumanoidRootPart") ~= nil and On == true  then 
                                         pcall(function()
                                             Rquip(Faction)
@@ -174,7 +174,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                             end 
                                         else
                                             repeat
-                                                wait(1.5)
+                                                wait(1)
                                                 if game:GetService("Players").LocalPlayer.Character ~= nil and nmyhrp and On == true  then
                                                     break 
                                                 end 
@@ -194,7 +194,6 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                         break
                                     end 
                                 until Target == nil and On == true 
-                                wait(.5)
                                 local OldName = v.Name 
                                 pcall(function()   
                                     local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
@@ -223,7 +222,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                         Play:Cancel()
                                         end)
                                     repeat
-                                        wait()
+                                        game:GetService("RunService").RenderStepped:Wait()
                                         if Target:FindFirstChild("HumanoidRootPart") ~= nil and On == true  then 
                                             local nmyhrp = nil
                                             pcall(function()
@@ -242,7 +241,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                                 end 
                                             else
                                                 repeat
-                                                    wait(1.5)
+                                                    wait(1)
                                                     if game:GetService("Players").LocalPlayer.Character ~= nil and nmyhrp and On == true  then
                                                         break 
                                                     end 
@@ -262,7 +261,6 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                             break
                                         end 
                                     until Target == nil and On == true 
-                                    wait(.5)
                                     local OldName = v.Name 
                                     pcall(function()   
                                         local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
@@ -298,7 +296,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                         Play:Cancel()
                                         end)
                                     repeat
-                                        wait()
+                                        game:GetService("RunService").RenderStepped:Wait()
                                         if Target:FindFirstChild("HumanoidRootPart") ~= nil and On == true  then 
                                             local nmyhrp = nil
                                             pcall(function()
@@ -317,7 +315,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                                 end 
                                             else
                                                 repeat
-                                                    wait(1.5)
+                                                    wait(1)
                                                     if game:GetService("Players").LocalPlayer.Character ~= nil and nmyhrp and On == true  then
                                                         break 
                                                     end 
@@ -337,7 +335,6 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                             break
                                         end 
                                     until Target == nil and On == true 
-                                    wait(.5)
                                     local OldName = v.Name 
                                     pcall(function()   
                                         local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
