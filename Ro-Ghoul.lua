@@ -194,6 +194,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                         break
                                     end 
                                 until Target == nil and On == true 
+                                wait(.35)
                                 local OldName = v.Name 
                                 pcall(function()   
                                     local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
@@ -261,6 +262,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                             break
                                         end 
                                     until Target == nil and On == true 
+                                    wait(.35)
                                     local OldName = v.Name 
                                     pcall(function()   
                                         local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
@@ -335,6 +337,7 @@ AutoFarmCate:CreateToggle("Enabled Auto Farm", function(arg)
                                             break
                                         end 
                                     until Target == nil and On == true 
+                                    wait(.35)
                                     local OldName = v.Name 
                                     pcall(function()   
                                         local Target = v:FindFirstChildOfClass("Model"):FindFirstChildOfClass("Model")
