@@ -23,11 +23,11 @@ for _, v in next, getgc() do
         end
     end
 end
---local Bar = game:GetService("Players").fordnikefox.PlayerGui.MainGui.Utility.StamBar.BarF.Bar
+--local Bar = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar
 local function CanSpeed()
-    if game:GetService("Players").fordnikefox.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X < 115 then 
+    if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X < 115 then 
         return false 
-    elseif game:GetService("Players").fordnikefox.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X > 535 then
+    elseif game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X > 535 then
         return true 
     end 
 end
@@ -61,7 +61,7 @@ local function WalkTo(destination,state,CanRun,Getfood)
            fireclickdetector(Click)
            for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.BankGUI.Frame.Deposit.MouseButton1Click)) do 
                 local Money = string.sub(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.Money.Text,2)
-                game:GetService("Players").fordnikefox.PlayerGui.BankGUI.Frame.Amount.Text = Money
+                game:GetService("Players").LocalPlayer.PlayerGui.BankGUI.Frame.Amount.Text = Money
                 wait(.5)
                 v:Fire()
             end
@@ -73,21 +73,21 @@ local function WalkTo(destination,state,CanRun,Getfood)
            fireclickdetector(Click)
            for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.BankGUI.Frame.Deposit.MouseButton1Click)) do 
                 local Money = string.sub(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.Money.Text,2)
-                game:GetService("Players").fordnikefox.PlayerGui.BankGUI.Frame.Amount.Text = Money
+                game:GetService("Players").LocalPlayer.PlayerGui.BankGUI.Frame.Amount.Text = Money
                 wait(.5)
                 v:Fire()
             end
-        elseif game:GetService("Players").fordnikefox.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X < 61 and CombatTag == false and Money > 300 and Getfood == true and game:GetService("Players").fordnikefox.Backpack:FindFirstChild("Chicken Fries") == nil and shared.MoneyFarmed == true and shared.MoneyFarmed == true then 
+        elseif game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X < 61 and CombatTag == false and Money > 300 and Getfood == true and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Chicken Fries") == nil and shared.MoneyFarmed == true and shared.MoneyFarmed == true then 
             local Food = Vector3.new(-1125.52173, 47.2412643, -294.940125)
             MoveTo(Food,true,false)
             for count = 0, 5,1  do 
                 fireclickdetector(game:GetService("Workspace")["Chicken Fries: $20"].ClickDetector)
             end 
-            for i,v in pairs(game:GetService("Players").fordnikefox.Backpack:GetChildren()) do  
+            for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do  
                 if v.Name == "Chicken Fries" and v:IsA("Tool") then 
                     humanoid:EquipTool(v) 
                     v:Activate()
-                    if game:GetService("Players").fordnikefox.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X > 220 then
+                    if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X > 220 then
                         break
                     end
                 end 
@@ -95,12 +95,12 @@ local function WalkTo(destination,state,CanRun,Getfood)
         elseif shared.MoneyFarmed == false then
             return
         end
-        if game:GetService("Players").fordnikefox.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X < 61 and CombatTag == false and Money > 20 and Getfood == true and game:GetService("Players").fordnikefox.Backpack:FindFirstChild("Chicken Fries") and shared.MoneyFarmed == true then
-            for i,v in pairs(game:GetService("Players").fordnikefox.Backpack:GetChildren()) do  
+        if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X < 61 and CombatTag == false and Money > 20 and Getfood == true and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Chicken Fries") and shared.MoneyFarmed == true then
+            for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do  
                 if v.Name == "Chicken Fries" and v:IsA("Tool") then 
                     humanoid:EquipTool(v) 
                     v:Activate()
-                    if game:GetService("Players").fordnikefox.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X > 220 then
+                    if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X > 220 then
                         break
                     end
                 end 
@@ -144,10 +144,10 @@ AutoFarmCate:CreateToggle("Money Farm", function(arg)
                     fireclickdetector(game:GetService("Workspace").JobBoardModel1.ClickDetector)
                     wait(.85)
                     if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI") and shared.MoneyFarmed == true then 
-                        if game:GetService("Players").fordnikefox.PlayerGui.JobGUI.Frame.Title.Text == "Restock Job" and shared.MoneyFarmed == true then 
+                        if game:GetService("Players").LocalPlayer.PlayerGui.JobGUI.Frame.Title.Text == "Restock Job" and shared.MoneyFarmed == true then 
                             break
-                        elseif game:GetService("Players").fordnikefox.PlayerGui.JobGUI.Frame.Title.Text ~= "Restock Job" and shared.MoneyFarmed == true  then 
-                            for i,v in pairs(getconnections(game:GetService("Players").fordnikefox.PlayerGui.JobGUI.Frame.Quit.MouseButton1Click)) do 
+                        elseif game:GetService("Players").LocalPlayer.PlayerGui.JobGUI.Frame.Title.Text ~= "Restock Job" and shared.MoneyFarmed == true  then 
+                            for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.JobGUI.Frame.Quit.MouseButton1Click)) do 
                                 wait(.5)
                                 v:Fire()
                             end
@@ -156,7 +156,7 @@ AutoFarmCate:CreateToggle("Money Farm", function(arg)
                         end 
                     end 
                     wait()
-                until game:GetService("Players").fordnikefox.PlayerGui:WaitForChild("JobGUI").Frame.Title.Text == "Restock Job"
+                until game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("JobGUI").Frame.Title.Text == "Restock Job"
                 DoJob()
             end 
         elseif game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI") and shared.MoneyFarmed == true then
@@ -170,10 +170,10 @@ AutoFarmCate:CreateToggle("Money Farm", function(arg)
                     fireclickdetector(game:GetService("Workspace").JobBoardModel1.ClickDetector)
                     wait(.85)
                     if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI") and shared.MoneyFarmed == true then 
-                        if game:GetService("Players").fordnikefox.PlayerGui.JobGUI.Frame.Title.Text == "Restock Job" and shared.MoneyFarmed == true then 
+                        if game:GetService("Players").LocalPlayer.PlayerGui.JobGUI.Frame.Title.Text == "Restock Job" and shared.MoneyFarmed == true then 
                             break
-                        elseif game:GetService("Players").fordnikefox.PlayerGui.JobGUI.Frame.Title.Text ~= "Restock Job" and shared.MoneyFarmed == true  then 
-                            for i,v in pairs(getconnections(game:GetService("Players").fordnikefox.PlayerGui.JobGUI.Frame.Quit.MouseButton1Click)) do 
+                        elseif game:GetService("Players").LocalPlayer.PlayerGui.JobGUI.Frame.Title.Text ~= "Restock Job" and shared.MoneyFarmed == true  then 
+                            for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.JobGUI.Frame.Quit.MouseButton1Click)) do 
                                 wait(.5)
                                 v:Fire()
                             end
@@ -182,7 +182,7 @@ AutoFarmCate:CreateToggle("Money Farm", function(arg)
                         end 
                     end 
                     wait()
-                until game:GetService("Players").fordnikefox.PlayerGui:WaitForChild("JobGUI").Frame.Title.Text == "Restock Job"
+                until game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("JobGUI").Frame.Title.Text == "Restock Job"
                 DoJob()
             end 
         end 
