@@ -133,7 +133,7 @@ local Ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/preztel/Az
 local AutoFarmCate = Ui:CreateTab("Auto-Farm","",true)
 AutoFarmCate:CreateToggle("Money Farm", function(arg)
     local PlayerName = game.Players.LocalPlayer.Name
-    if arg == true and game:GetSerivce("Workspace").Live:FindFirstChild(PlayerName) then 
+    if arg == true and game.Workspace.Live:FindFirstChild(PlayerName) then 
         shared.MoneyFarmed = true 
         if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI") == nil and shared.MoneyFarmed == true  then
             local Board = game:GetService("Workspace").JobBoardModel1.Board  
