@@ -5,7 +5,7 @@ function Notification(Msg)
         Duration = 4,
     })
 end 
-
+shared.MoneyFarmed = (shared.MoneyFarmed and shared.MoneyFarmed1()) or false
 local Run = nil
 local StopRun = nil
 
@@ -128,7 +128,7 @@ local Script = game:GetService("Players").LocalPlayer.Backpack.LocalS
 
 
 local Ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/preztel/AzureLibrary/master/uilib.lua", true))()
-shared.MoneyFarmed = false
+
 
 local AutoFarmCate = Ui:CreateTab("Auto-Farm","",true)
 AutoFarmCate:CreateToggle("Money Farm", function(arg)
@@ -193,3 +193,7 @@ AutoFarmCate:CreateToggle("Money Farm", function(arg)
         Notification("You Have Stopped AutoFarming")
     end 
 end)
+
+function shared.MoneyFarmed1()
+    Notification("ReDo")
+end
