@@ -1,4 +1,7 @@
 local StarterGui = game:GetService("StarterGui")
+local PlayerModule = require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"))
+local Controls = PlayerModule:GetControls()
+
 function Notification(Msg)
     StarterGui:SetCore("SendNotification", {
         Title = "Synapse-Notification",
@@ -38,7 +41,7 @@ end
 
 function WalkTo(destination,state,CanRun,Getfood)
    local Char =  game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
-
+    local RunOn = false
     local PathfindingService = game:GetService("PathfindingService")
  
     local path = PathfindingService:CreatePath()
@@ -47,18 +50,20 @@ function WalkTo(destination,state,CanRun,Getfood)
 
     local waypoints = path:GetWaypoints()
     local Money = tonumber(string.sub(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.Money.Text,2))
-    local RunOn = false
+   
     for _, waypoint in pairs(waypoints) do
         local CombatTag = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.CombatTag.Visible
+        
         if CanSpeed() == true and CanRun == true and RunOn == false then 
-            RunOn = true 
             print(RunOn)
+            RunOn = true
             print("Ok")
-            local Co = coroutine.create(function ()
+            local Co = coroutine.create(function()
                 Run()
             end)
             coroutine.resume(Co)
         elseif CanSpeed() == false and RunOn == true then
+            print(RunOn)
             RunOn = false 
             print("No")
             local Co = coroutine.create(function ()
@@ -66,11 +71,15 @@ function WalkTo(destination,state,CanRun,Getfood)
             end)
             coroutine.resume(Co)
         end 
-        humanoid:MoveTo(waypoint.Position)
-        if waypoint.Action == Enum.PathWaypointAction.Jump  then
-            humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+        
+        game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):MoveTo(waypoint.Position)
+        if waypoint.Action == Enum.PathWaypointAction.Jump then 
+            game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
         end
-        humanoid.MoveToFinished:Wait()
+        game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").MoveToFinished:Wait()
+        if shared.MoneyFarmed == false then
+            break
+        end 
         if CombatTag == true and state == true and Money > 600 and CanRun == true and shared.MoneyFarmed == true then
             local Bank = game:GetService("Workspace").Bank.Part
             local BankLoc = Bank.Position
@@ -83,6 +92,7 @@ function WalkTo(destination,state,CanRun,Getfood)
                 wait(.5)
                 v:Fire()
             end
+            WalkTo(waypoint.Position,true,true,true)
         elseif Money > 3500 then
             local Bank = game:GetService("Workspace").Bank.Part
             local BankLoc = Bank.Position
@@ -95,6 +105,7 @@ function WalkTo(destination,state,CanRun,Getfood)
                 wait(.5)
                 v:Fire()
             end
+            WalkTo(waypoint.Position,true,true,true)
         elseif game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X < 61 and CombatTag == false and Money > 300 and Getfood == true and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Chicken Fries") == nil and shared.MoneyFarmed == true and shared.MoneyFarmed == true then 
             local Food = Vector3.new(-1125.52173, 47.2412643, -294.940125)
             MoveTo(Food,true,false)
@@ -110,24 +121,22 @@ function WalkTo(destination,state,CanRun,Getfood)
                     end
                 end 
             end
+            WalkTo(waypoint.Position,true,true,true)
+        elseif game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X < 61 and CombatTag == false and Getfood == true and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Chicken Fries") and shared.MoneyFarmed == true then
+                for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do  
+                    if v.Name == "Chicken Fries" and v:IsA("Tool") then 
+                        humanoid:EquipTool(v) 
+                        v:Activate()
+                        if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X > 220 then
+                            break
+                        end
+                    end 
+                end
+                WalkTo(waypoint.Position,true,true,true)
         elseif shared.MoneyFarmed == false then
             return
         end
-        if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X < 61 and CombatTag == false and Money > 20 and Getfood == true and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Chicken Fries") and shared.MoneyFarmed == true then
-            for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do  
-                if v.Name == "Chicken Fries" and v:IsA("Tool") then 
-                    humanoid:EquipTool(v) 
-                    v:Activate()
-                    if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X > 220 then
-                        break
-                    end
-                end 
-            end
-        elseif shared.MoneyFarmed == false then
-            return
-        end
-        WalkTo(waypoint.Position,true,true,true)
-    end 
+    end
 end
 local function DoJob()
     local FirstSpot = game:GetService("Workspace").Jobs.SupplyDelivery.Japanese1.Part1
@@ -152,6 +161,7 @@ local AutoFarmCate = Ui:CreateTab("Auto-Farm","",true)
 AutoFarmCate:CreateToggle("Money Farm", function(arg)
     local PlayerName = game.Players.LocalPlayer.Name
     if arg == true and game.Workspace.Live:FindFirstChild(PlayerName) then 
+        Controls:Disable()
         shared.MoneyFarmed = true 
         if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI") == nil and shared.MoneyFarmed == true  then
             local Board = game:GetService("Workspace").JobBoardModel1.Board  
@@ -159,7 +169,9 @@ AutoFarmCate:CreateToggle("Money Farm", function(arg)
                 WalkTo(Board.Position,true,true,true)
                 wait()
                 repeat
-                    fireclickdetector(game:GetService("Workspace").JobBoardModel1.ClickDetector)
+                    if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI") == nil then 
+                        fireclickdetector(game:GetService("Workspace").JobBoardModel1.ClickDetector)
+                    end 
                     wait(.85)
                     if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI") and shared.MoneyFarmed == true then 
                         if game:GetService("Players").LocalPlayer.PlayerGui.JobGUI.Frame.Title.Text == "Restock Job" and shared.MoneyFarmed == true then 
@@ -169,18 +181,20 @@ AutoFarmCate:CreateToggle("Money Farm", function(arg)
                                 wait(.5)
                                 v:Fire()
                             end
+                            fireclickdetector(game:GetService("Workspace").JobBoardModel1.ClickDetector)
+                            wait(1.5)
                         elseif shared.MoneyFarmed == false then 
                             break 
                         end 
                     end 
                     wait()
-                until game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("JobGUI").Frame.Title.Text == "Restock Job"
+                until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI").Frame.Title.Text == "Restock Job"
                 DoJob()
             end 
         elseif game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI") and shared.MoneyFarmed == true then
             local Board = game:GetService("Workspace").JobBoardModel1.Board  
             while shared.MoneyFarmed == true do
-                if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI") == nil or game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI").Text ~= "Restock Job" and shared.MoneyFarmed == true then 
+                if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI") == nil or game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI").Frame.Title.Text ~= "Restock Job" and shared.MoneyFarmed == true then 
                     WalkTo(Board.Position,true,true,true)
                     warn("Oh Ok")
                 end
@@ -208,6 +222,7 @@ AutoFarmCate:CreateToggle("Money Farm", function(arg)
     elseif game.Workspace.Live:FindFirstChild(PlayerName) == nil then 
         Notification("Your Not Loaded In The game")
     elseif arg == false then
+        Controls:Enable()
         shared.MoneyFarmed = false 
         Notification("You Have Stopped AutoFarming")
     end 
