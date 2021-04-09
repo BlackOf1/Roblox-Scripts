@@ -62,7 +62,7 @@ function WalkTo(destination,state,CanRun,Getfood)
                 Run()
             end)
             coroutine.resume(Co)
-        elseif CanSpeed() == false and RunOn == true then
+        elseif CanSpeed() == false and RunOn == true and CanRun == true then
             print(RunOn)
             RunOn = false 
             print("No")
@@ -166,7 +166,7 @@ AutoFarmCate:CreateToggle("Money Farm", function(arg)
         if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI") == nil and shared.MoneyFarmed == true  then
             local Board = game:GetService("Workspace").JobBoardModel1.Board  
             while shared.MoneyFarmed == true do
-                WalkTo(Board.Position,true,true,true)
+                WalkTo(Board.Position,true,false,true)
                 wait()
                 repeat
                     if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI") == nil then 
