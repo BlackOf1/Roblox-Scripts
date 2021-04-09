@@ -195,7 +195,7 @@ AutoFarmCate:CreateToggle("Money Farm", function(arg)
                 DoJob()
             end 
         end 
-    elseif game:GetSerivce("Workspace").Live:FindFirstChild(PlayerName) == nil then 
+    elseif game.Workspace.Live:FindFirstChild(PlayerName) == nil then 
         Notification("Your Not Loaded In The game")
     elseif arg == false then
         shared.MoneyFarmed = false 
