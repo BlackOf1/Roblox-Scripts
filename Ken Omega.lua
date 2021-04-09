@@ -51,7 +51,7 @@ function WalkTo(destination,state,CanRun,Getfood)
     path:ComputeAsync(Char:FindFirstChild("HumanoidRootPart").Position, destination)
     local humanoid = Char:WaitForChild("Humanoid")
 
-    local waypoints = path:GetWaypoints(nil,1.5,nil)
+    local waypoints = path:GetWaypoints(1,1.5,nil)
     local Money = tonumber(string.sub(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.Money.Text,2))
     path.Blocked:Connect(function()
         game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
