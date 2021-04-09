@@ -42,7 +42,7 @@ local function WalkTo(destination,state,CanRun,Getfood)
  
     local path = PathfindingService:CreatePath()
 
-    path:ComputeAsync(Char("HumanoidRootPart").Position, destination)
+    path:ComputeAsync(Char:FindFirstChild("HumanoidRootPart").Position, destination)
     local humanoid = Char:WaitForChild("Humanoid")
 
     local waypoints = path:GetWaypoints()
