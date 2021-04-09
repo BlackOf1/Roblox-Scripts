@@ -35,13 +35,14 @@ end
 
 
 
-local function WalkTo(destination,state,CanRun,Getfood)
+function WalkTo(destination,state,CanRun,Getfood)
    local Char =  game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
 
-   local PathfindingService = game:GetService("PathfindingService")
+    local PathfindingService = game:GetService("PathfindingService")
  
     local path = PathfindingService:CreatePath()
-
+    print(destination)
+    warn(Char:FindFirstChild("HumanoidRootPart").Position)
     path:ComputeAsync(Char:FindFirstChild("HumanoidRootPart").Position, destination)
     local humanoid = Char:WaitForChild("Humanoid")
 
