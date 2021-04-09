@@ -106,7 +106,7 @@ function WalkTo(destination,state,CanRun,Getfood)
                 v:Fire()
             end
             WalkTo(waypoint.Position,true,true,true)
-        elseif game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X < 61 and CombatTag == false and Money > 300 and Getfood == true and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Chicken Fries") == nil and shared.MoneyFarmed == true and shared.MoneyFarmed == true then 
+        elseif game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X < 55 and CombatTag == false and Money > 300 and Getfood == true and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Chicken Fries") == nil and shared.MoneyFarmed == true and shared.MoneyFarmed == true then 
             local Food = Vector3.new(-1125.52173, 47.2412643, -294.940125)
             WalkTo(Food,true,false,false)
             for count = 0, 5,1  do 
@@ -116,18 +116,18 @@ function WalkTo(destination,state,CanRun,Getfood)
                 if v.Name == "Chicken Fries" and v:IsA("Tool") then 
                     humanoid:EquipTool(v) 
                     v:Activate()
-                    if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X > 220 then
+                    if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X > 200 then
                         break
                     end
                 end 
             end
             WalkTo(waypoint.Position,true,true,true)
-        elseif game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X < 61 and CombatTag == false and Getfood == true and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Chicken Fries") and shared.MoneyFarmed == true then
+        elseif game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X < 55 and CombatTag == false and Getfood == true and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Chicken Fries") and shared.MoneyFarmed == true then
                 for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do  
                     if v.Name == "Chicken Fries" and v:IsA("Tool") then 
                         humanoid:EquipTool(v) 
                         v:Activate()
-                        if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X > 220 then
+                        if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X > 200 then
                             break
                         end
                     end 
