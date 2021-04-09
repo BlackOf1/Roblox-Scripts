@@ -14,7 +14,6 @@ shared.MoneyFarmed = (shared.MoneyFarmed and shared.MoneyFarmed1()) or false
 
 
 
-
 local Run = nil
 local StopRun = nil
 local Script = game:GetService("Players").LocalPlayer.Backpack.LocalS
@@ -82,6 +81,20 @@ function WalkTo(destination,state,CanRun,Getfood)
         end
         game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):MoveTo(waypoint.Position)
         --print(waypoint.Action)
+        
+        pcall(function()
+            local Bin1 = game.Workspace:FindFirstChild("Bins") or game.Workspace:FindFirstChild("Bin1")
+            Bin1.Name = "Bin1"
+            local Bin2 = game.Workspace:FindFirstChild("Bins") or game.Workspace:FindFirstChild("Bin2")
+            Bin2.Name = "Bin2"
+            
+            local Bin = game.Workspace:FindFirstChild("Bin1")
+            local Distance = (game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - Bin.Part.Position).magnitude
+            --print(Distance)
+            if Distance < 4.3 then
+                game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
+            end 
+        end)
         game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").MoveToFinished:Wait()
         if shared.MoneyFarmed == false then
             return
