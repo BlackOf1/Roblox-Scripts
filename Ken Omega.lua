@@ -1,5 +1,6 @@
+local StarterGui = game:GetService("StarterGui")
 function Notification(Msg)
-    game:GetService("StarterGui"):SetCore("SendNotification", {
+    StarterGui:SetCore("SendNotification", {
         Title = "Synapse-Notification",
         Text = tostring(Msg),
         Duration = 4,
