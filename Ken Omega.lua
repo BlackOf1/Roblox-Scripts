@@ -10,7 +10,7 @@ shared.MoneyFarmed = (shared.MoneyFarmed and shared.MoneyFarmed1()) or false
 
 local Run = nil
 local StopRun = nil
-
+local Script = game:GetService("Players").LocalPlayer.Backpack.LocalS
 for _, v in next, getgc() do
     if typeof(v) == "function" then
     local script = getfenv(v).script
