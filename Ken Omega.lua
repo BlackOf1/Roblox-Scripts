@@ -47,14 +47,13 @@ function WalkTo(destination,state,CanRun,Getfood)
 
     local waypoints = path:GetWaypoints()
     local Money = tonumber(string.sub(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.Money.Text,2))
-
+    local RunOn = false
     for _, waypoint in pairs(waypoints) do
         local CombatTag = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.CombatTag.Visible
-        print(Run)
-        print(StopRun)
-        if CanSpeed() == true and CanRun == true then 
+        if CanSpeed() == true and CanRun == true and RunOn == false then 
+            RunOn = true 
             Run()
-        else 
+        elseif CanSpeed == false and RunOn == true then
             StopRun()
         end 
         humanoid:MoveTo(waypoint.Position)
