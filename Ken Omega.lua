@@ -52,7 +52,7 @@ function WalkTo(destination,state,CanRun,Getfood)
     path:ComputeAsync(Char:FindFirstChild("HumanoidRootPart").Position, destination)
     local humanoid = Char:WaitForChild("Humanoid")
 
-    local waypoints = path:GetWaypoints()
+    local waypoints = path:GetWaypoints(nil,1.5,nil)
     local Money = tonumber(string.sub(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.Money.Text,2))
     path.Blocked:Connect(function()
         game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
@@ -84,7 +84,7 @@ function WalkTo(destination,state,CanRun,Getfood)
         --print(waypoint.Action)
         game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").MoveToFinished:Wait()
         if shared.MoneyFarmed == false then
-            break
+            return
         end 
         if CanSpeed() == true and CanRun == true and RunOn == false then 
             print(RunOn)
@@ -110,7 +110,7 @@ function WalkTo(destination,state,CanRun,Getfood)
                 StopRun()
             end)
             coroutine.resume(Co)
-            WalkTo(BankLoc,false,true)
+            WalkTo(BankLoc,false,true,false)
            local Click = Bank.Parent.ClickDetector
            fireclickdetector(Click)
            for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.BankGUI.Frame.Deposit.MouseButton1Click)) do 
@@ -119,28 +119,36 @@ function WalkTo(destination,state,CanRun,Getfood)
                 wait(.5)
                 v:Fire()
             end
+            local Co1 = coroutine.create(function ()
+                StopRun()
+            end)
+            coroutine.resume(Co1)
             WalkTo(destination,true,true,true)
-        elseif Money > 3500 then
+            break 
+        elseif Money > 3500 and state == true then
             local Bank = game:GetService("Workspace").Bank.Part
             local BankLoc = Bank.Position
-            local Co = coroutine.create(function ()
+            warn("Bank")
+            local Co = coroutine.create(function()
                 StopRun()
             end)
             coroutine.resume(Co)
-            WalkTo(BankLoc,false,true)
+            WalkTo(BankLoc,false,true,false)
            local Click = Bank.Parent.ClickDetector
            fireclickdetector(Click)
+           wait(1)
            for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.BankGUI.Frame.Deposit.MouseButton1Click)) do 
                 local Money = string.sub(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.Money.Text,2)
-                game:GetService("Players").LocalPlayer.PlayerGui.BankGUI.Frame.Amount.Text = Money
+                game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("BankGUI").Frame.Amount.Text = Money
                 wait(.5)
                 v:Fire()
             end
-            local Co = coroutine.create(function ()
+            local Co1 = coroutine.create(function ()
                 StopRun()
             end)
-            coroutine.resume(Co)
+            coroutine.resume(Co1)
             WalkTo(destination,true,true,true)
+            break 
         elseif game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StomachBar.BarF.Bar.AbsoluteSize.X < 55 and CombatTag == false and Money > 300 and Getfood == true and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Chicken Fries") == nil and shared.MoneyFarmed == true then 
             local Food = Vector3.new(-1125.52173, 47.2412643, -294.940125)
             warn("Food")
@@ -151,28 +159,32 @@ function WalkTo(destination,state,CanRun,Getfood)
             WalkTo(Food,true,false,false)
             for count = 0, 5, 1  do 
                 fireclickdetector(game:GetService("Workspace")["Chicken Fries: $20"].ClickDetector)
+                wait(1.5)
             end 
             for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do  
                 if v.Name == "Chicken Fries" and v:IsA("Tool") then 
+                    warn("eat")
                     game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):EquipTool(v) 
                     v:Activate()
-                    wait(.85)
+                    wait(1)
                     if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StomachBar.BarF.Bar.AbsoluteSize.X > 200 then
                         break
                     end
                 end 
             end
-            local Co = coroutine.create(function ()
+            local Co1 = coroutine.create(function ()
                 StopRun()
             end)
-            coroutine.resume(Co)
+            coroutine.resume(Co1)
             WalkTo(destination,true,true,true)
+            break 
         elseif game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StomachBar.BarF.Bar.AbsoluteSize.X < 55 and CombatTag == false and Getfood == true and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Chicken Fries") and shared.MoneyFarmed == true then
                 for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do  
                     if v.Name == "Chicken Fries" and v:IsA("Tool") then 
+                        warn("eat")
                         game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):EquipTool(v) 
                         v:Activate()
-                        wait(.85)
+                        wait(1)
                         if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StomachBar.BarF.Bar.AbsoluteSize.X > 200 then
                             break
                         end
@@ -183,6 +195,7 @@ function WalkTo(destination,state,CanRun,Getfood)
                 end)
                 coroutine.resume(Co)
                 WalkTo(destination,true,true,true)
+                break 
         elseif shared.MoneyFarmed == false then
             return
         end
@@ -218,13 +231,13 @@ AutoFarmCate:CreateToggle("Money Farm", function(arg)
         Controls:Disable()
         shared.MoneyFarmed = true 
         if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI") == nil and shared.MoneyFarmed == true  then
-            local Board = game:GetService("Workspace").JobBoardModel1.Board  
+            local Board = Vector3.new(-1166.06531, 47.1613693, -224.598022)
             while shared.MoneyFarmed == true do
                 local Co = coroutine.create(function ()
                     StopRun()
                 end)
                 coroutine.resume(Co)
-                WalkTo(Board.Position,true,false,true)
+                WalkTo(Board,true,false,true)
                 wait()
                 repeat
                     if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI") == nil then 
