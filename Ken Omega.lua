@@ -54,6 +54,7 @@ function WalkTo(destination,state,CanRun,Getfood)
             RunOn = true 
             Run()
         elseif CanSpeed == false and RunOn == true then
+            RunOn = false 
             StopRun()
         end 
         humanoid:MoveTo(waypoint.Position)
