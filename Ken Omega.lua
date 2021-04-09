@@ -53,11 +53,17 @@ function WalkTo(destination,state,CanRun,Getfood)
         if CanSpeed() == true and CanRun == true and RunOn == false then 
             RunOn = true 
             print("Ok")
-            Run()
+            local Co = coroutine.create(function ()
+                Run()
+            end)
+            coroutine.resume(Co)
         elseif CanSpeed() == false and RunOn == true then
             RunOn = false 
             print("No")
-            StopRun()
+            local Co = coroutine.create(function ()
+                StopRun()
+            end)
+            coroutine.resume(Co)
         end 
         humanoid:MoveTo(waypoint.Position)
         if waypoint.Action == Enum.PathWaypointAction.Jump  then
