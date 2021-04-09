@@ -108,7 +108,7 @@ function WalkTo(destination,state,CanRun,Getfood)
             WalkTo(waypoint.Position,true,true,true)
         elseif game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X < 61 and CombatTag == false and Money > 300 and Getfood == true and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Chicken Fries") == nil and shared.MoneyFarmed == true and shared.MoneyFarmed == true then 
             local Food = Vector3.new(-1125.52173, 47.2412643, -294.940125)
-            MoveTo(Food,true,false)
+            WalkTo(Food,true,false,false)
             for count = 0, 5,1  do 
                 fireclickdetector(game:GetService("Workspace")["Chicken Fries: $20"].ClickDetector)
             end 
