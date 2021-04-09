@@ -52,9 +52,11 @@ function WalkTo(destination,state,CanRun,Getfood)
         local CombatTag = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.CombatTag.Visible
         if CanSpeed() == true and CanRun == true and RunOn == false then 
             RunOn = true 
+            print("Ok")
             Run()
         elseif CanSpeed == false and RunOn == true then
             RunOn = false 
+            print("No")
             StopRun()
         end 
         humanoid:MoveTo(waypoint.Position)
