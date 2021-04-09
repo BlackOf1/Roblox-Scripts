@@ -129,6 +129,7 @@ function WalkTo(destination,state,CanRun,Getfood)
             WalkTo(BankLoc,false,true,false)
            local Click = Bank.Parent.ClickDetector
            fireclickdetector(Click)
+           wait(1.1)
            for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.BankGUI.Frame.Deposit.MouseButton1Click)) do 
                 local Money = string.sub(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.Money.Text,2)
                 game:GetService("Players").LocalPlayer.PlayerGui.BankGUI.Frame.Amount.Text = Money
@@ -181,8 +182,9 @@ function WalkTo(destination,state,CanRun,Getfood)
                 if v.Name == "Chicken Fries" and v:IsA("Tool") then 
                     warn("eat")
                     game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):EquipTool(v) 
+                    wait(.5)
                     v:Activate()
-                    wait(1)
+                    wait(1.3)
                     if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StomachBar.BarF.Bar.AbsoluteSize.X > 200 then
                         break
                     end
@@ -275,7 +277,7 @@ AutoFarmCate:CreateToggle("Money Farm", function(arg)
                         end 
                     end 
                     wait()
-                until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI").Frame.Title.Text == "Restock Job"
+                until game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI") and game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI").Frame.Title.Text == "Restock Job"
                 DoJob()
             end 
         elseif game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI") and shared.MoneyFarmed == true then
@@ -306,7 +308,7 @@ AutoFarmCate:CreateToggle("Money Farm", function(arg)
                         end 
                     end 
                     wait()
-                until game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("JobGUI").Frame.Title.Text == "Restock Job"
+                until  game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI") and game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI").Frame.Title.Text == "Restock Job"
                 DoJob()
             end 
         end 
