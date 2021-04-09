@@ -7,6 +7,7 @@ function Notification(Msg)
     })
 end 
 shared.MoneyFarmed = (shared.MoneyFarmed and shared.MoneyFarmed1()) or false
+
 local Run = nil
 local StopRun = nil
 
@@ -18,7 +19,7 @@ for _, v in next, getgc() do
                 if debug.getinfo(v).name == "runPrompt" then 
                  Run = v
                 elseif debug.getinfo(v).name == "stopSprint" then 
-                    StopRun = v
+                StopRun = v
                 end 
             end
         end
@@ -49,6 +50,8 @@ function WalkTo(destination,state,CanRun,Getfood)
 
     for _, waypoint in pairs(waypoints) do
         local CombatTag = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.CombatTag.Visible
+        print(Run)
+        print(StopRun)
         if CanSpeed() == true and CanRun == true then 
             Run()
         else 
