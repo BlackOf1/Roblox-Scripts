@@ -52,6 +52,7 @@ function WalkTo(destination,state,CanRun,Getfood)
         local CombatTag = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.CombatTag.Visible
         if CanSpeed() == true and CanRun == true and RunOn == false then 
             RunOn = true 
+            print(RunOn)
             print("Ok")
             local Co = coroutine.create(function ()
                 Run()
@@ -181,6 +182,7 @@ AutoFarmCate:CreateToggle("Money Farm", function(arg)
             while shared.MoneyFarmed == true do
                 if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI") == nil or game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI").Text ~= "Restock Job" and shared.MoneyFarmed == true then 
                     WalkTo(Board.Position,true,true,true)
+                    warn("Oh Ok")
                 end
                 wait()
                 repeat
