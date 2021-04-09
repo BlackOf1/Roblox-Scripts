@@ -33,9 +33,10 @@ for _, v in next, getgc() do
 end
 --local Bar = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar
 local function CanSpeed()
-    if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X < 115 then 
+    local Bar = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X
+    if Bar <= 115 then 
         return false 
-    elseif game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X > 535 then
+    elseif Bar >= 535 then
         return true 
     end 
 end
@@ -58,8 +59,9 @@ function WalkTo(destination,state,CanRun,Getfood)
     end)
     for _, waypoint in pairs(waypoints) do
         local CombatTag = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.CombatTag.Visible
-        
-        if CanSpeed() == true and CanRun == true and RunOn == false then 
+        --print(CanSpeed())
+        local CanSpeed1 = CanSpeed()
+        if CanSpeed1 == true and CanRun == true and RunOn == false then 
             print(RunOn)
             RunOn = true
             print("Ok")
@@ -67,7 +69,7 @@ function WalkTo(destination,state,CanRun,Getfood)
                 Run()
             end)
             coroutine.resume(Co)
-        elseif CanSpeed() == false and RunOn == true and CanRun == true then
+        elseif CanSpeed1 == false and RunOn == true and CanRun == true then
             print(RunOn)
             RunOn = false 
             print("No")
@@ -102,7 +104,8 @@ function WalkTo(destination,state,CanRun,Getfood)
         if shared.MoneyFarmed == false then
             return
         end 
-        if CanSpeed() == true and CanRun == true and RunOn == false then 
+        local CanSpeed2 = CanSpeed()
+        if CanSpeed2 == true and CanRun == true and RunOn == false then 
             print(RunOn)
             RunOn = true
             print("Ok")
@@ -110,7 +113,7 @@ function WalkTo(destination,state,CanRun,Getfood)
                 Run()
             end)
             coroutine.resume(Co)
-        elseif CanSpeed() == false and RunOn == true and CanRun == true then
+        elseif CanSpeed2 == false and RunOn == true and CanRun == true then
             print(RunOn)
             RunOn = false 
             print("No")
