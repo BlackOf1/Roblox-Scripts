@@ -43,6 +43,7 @@ function WalkTo(destination,state,CanRun,Getfood)
     local path = PathfindingService:CreatePath()
     print(destination)
     warn(Char:FindFirstChild("HumanoidRootPart").Position)
+    if destination then return end 
     path:ComputeAsync(Char:FindFirstChild("HumanoidRootPart").Position, destination)
     local humanoid = Char:WaitForChild("Humanoid")
 
