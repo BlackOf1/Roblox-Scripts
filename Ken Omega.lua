@@ -81,7 +81,7 @@ function WalkTo(destination,state,CanRun,Getfood)
             game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
         end
         game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):MoveTo(waypoint.Position)
-        print(waypoint.Action)
+        --print(waypoint.Action)
         game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").MoveToFinished:Wait()
         if shared.MoneyFarmed == false then
             break
