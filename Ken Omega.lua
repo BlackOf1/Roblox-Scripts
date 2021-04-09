@@ -54,7 +54,7 @@ function WalkTo(destination,state,CanRun,Getfood)
             RunOn = true 
             print("Ok")
             Run()
-        elseif CanSpeed == false and RunOn == true then
+        elseif CanSpeed() == false and RunOn == true then
             RunOn = false 
             print("No")
             StopRun()
