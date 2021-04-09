@@ -1,5 +1,5 @@
 function Notification(Msg)
-    StarterGui:SetCore("SendNotification", {
+    game:GetService("StarterGui"):SetCore("SendNotification", {
         Title = "Synapse-Notification",
         Text = tostring(Msg),
         Duration = 4,
