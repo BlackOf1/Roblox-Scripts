@@ -52,6 +52,9 @@ local function WalkTo(destination,state,CanRun,Getfood)
             StopRun()
         end 
         humanoid:MoveTo(waypoint.Position)
+        if waypoint.Action == Enum.PathWaypointAction.Jump  then
+            humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+        end
         humanoid.MoveToFinished:Wait()
         if CombatTag == true and state == true and Money > 600 and CanRun == true and shared.MoneyFarmed == true then
             local Bank = game:GetService("Workspace").Bank.Part
