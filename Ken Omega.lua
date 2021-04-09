@@ -89,9 +89,12 @@ function WalkTo(destination,state,CanRun,Getfood)
             Bin2.Name = "Bin2"
             
             local Bin = game.Workspace:FindFirstChild("Bin1")
+            local Bin0 = game.Workspace:FindFirstChild("Bin2")
             local Distance = (game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - Bin.Part.Position).magnitude
+            local Distance1 = (game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - Bin0.Part.Position).magnitude
             --print(Distance)
-            if Distance < 4.3 then
+            if (Distance < 6) or (Distance1 < 6)  then
+                warn("Jumping")
                 game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
             end 
         end)
@@ -196,8 +199,8 @@ function WalkTo(destination,state,CanRun,Getfood)
                     if v.Name == "Chicken Fries" and v:IsA("Tool") then 
                         warn("eat")
                         game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):EquipTool(v) 
-                        v:Activate()
-                        wait(1)
+                        game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):Activate()
+                        wait(1.1)
                         if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StomachBar.BarF.Bar.AbsoluteSize.X > 200 then
                             break
                         end
