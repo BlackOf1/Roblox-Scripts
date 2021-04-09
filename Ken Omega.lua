@@ -95,7 +95,7 @@ function WalkTo(destination,state,CanRun,Getfood)
             local Distance = (game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - Bin.Part.Position).magnitude
             local Distance1 = (game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - Bin0.Part.Position).magnitude
             --print(Distance)
-            if (Distance < 7.8) or (Distance1 < 7.8)  then
+            if (Distance < 8.8) or (Distance1 < 8.8)  then
                 warn("Jumping")
                 game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
             end 
