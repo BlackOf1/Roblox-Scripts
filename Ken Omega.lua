@@ -1,9 +1,11 @@
 local StarterGui = game:GetService("StarterGui")
 local PlayerModule = require(game:GetService("Players").LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"))
+local PlayerName = game:GetService("Players").LocalPlayer.Name
 local Controls = PlayerModule:GetControls()
 local vu = game:GetService("VirtualUser")
 
 shared.MoneyFarmed = (shared.MoneyFarmed and shared.MoneyFarmed1()) or false
+shared.BankDeposit = shared.BankDeposit or 3500
 shared.IdleConnection = game:GetService("Players").LocalPlayer.Idled:connect(function()
    vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
    wait(1)
@@ -19,6 +21,14 @@ function Notification(Msg)
         Duration = 4,
     })
 end 
+
+repeat 
+    if game.Workspace.Live:FindFirstChild(PlayerName) then 
+        break
+    end 
+    Notification("Your Not Loaded In The game")
+     wait(5)
+until game.Workspace.Live:FindFirstChild(PlayerName) == nil 
 
 function GetTool(ToolName)
     local plr = game:GetService("Players").LocalPlayer
@@ -54,7 +64,6 @@ for _, v in next, getgc() do
         end
     end
 end
---local Bar = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar
 local function CanSpeed()
     local Bar = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X
     if Bar <= 115 then 
@@ -67,32 +76,29 @@ end
 
 
 function WalkTo(destination,state,CanRun,Getfood)
-   local Char =  game:GetService("Players").LocalPlayer.Character or game:GetService("Players").LocalPlayer.CharacterAdded:Wait()
+    local Char =  game:GetService("Players").LocalPlayer.Character or game:GetService("Players").LocalPlayer.CharacterAdded:Wait()
     local RunOn = false
     local PathfindingService = game:GetService("PathfindingService")
  
     local path = PathfindingService:CreatePath()
     path:ComputeAsync(Char:FindFirstChild("HumanoidRootPart").Position, destination)
-    local humanoid = Char:WaitForChild("Humanoid")
 
     local waypoints = path:GetWaypoints(1,1.5,nil)
     local Money = tonumber(string.sub(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.Money.Text,2))
+
     path.Blocked:Connect(function()
         game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
     end)
     for _, waypoint in pairs(waypoints) do
         local CombatTag = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.CombatTag.Visible
-        --print(CanSpeed())
         local CanSpeed1 = CanSpeed()
         if CanSpeed1 == true and CanRun == true and RunOn == false then 
-            print(RunOn)
             RunOn = true
             local Co = coroutine.create(function()
                 Run()
             end)
             coroutine.resume(Co)
         elseif CanSpeed1 == false and RunOn == true and CanRun == true then
-            print(RunOn)
             RunOn = false 
             local Co = coroutine.create(function ()
                 StopRun()
@@ -103,7 +109,6 @@ function WalkTo(destination,state,CanRun,Getfood)
             game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
         end
         game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid"):MoveTo(waypoint.Position)
-        --print(waypoint.Action)
         
         pcall(function()
             local Bin1 = game.Workspace:FindFirstChild("Bins") or game.Workspace:FindFirstChild("Bin1")
@@ -115,9 +120,7 @@ function WalkTo(destination,state,CanRun,Getfood)
             local Bin0 = game.Workspace:FindFirstChild("Bin2")
             local Distance = (game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - Bin.Part.Position).magnitude
             local Distance1 = (game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - Bin0.Part.Position).magnitude
-            --print(Distance)
             if (Distance < 8.8) or (Distance1 < 8.8)  then
-                warn("Jumping")
                 game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
             end 
         end)
@@ -127,23 +130,19 @@ function WalkTo(destination,state,CanRun,Getfood)
         end 
         local CanSpeed2 = CanSpeed()
         if CanSpeed2 == true and CanRun == true and RunOn == false then 
-            print(RunOn)
             RunOn = true
-            print("Ok")
             local Co = coroutine.create(function()
                 Run()
             end)
             coroutine.resume(Co)
         elseif CanSpeed2 == false and RunOn == true and CanRun == true then
-            print(RunOn)
             RunOn = false 
-            print("No")
             local Co = coroutine.create(function ()
                 StopRun()
             end)
             coroutine.resume(Co)
         end 
-        if CombatTag == true and state == true and Money > 600 and CanRun == true and shared.MoneyFarmed == true then
+        if CombatTag == true and state == true and Money > 600 and CanRun == true and shared.MoneyFarmed == true  then
             local Bank = game:GetService("Workspace").Bank.Part
             local BankLoc = Bank.Position
             local Co = coroutine.create(function ()
@@ -166,7 +165,7 @@ function WalkTo(destination,state,CanRun,Getfood)
             coroutine.resume(Co1)
             WalkTo(destination,true,true,true)
             break 
-        elseif Money > 3500 and state == true then
+        elseif Money > shared.BankDeposit and state == true then
             local Bank = game:GetService("Workspace").Bank.Part
             local BankLoc = Bank.Position
             warn("Bank")
@@ -177,7 +176,13 @@ function WalkTo(destination,state,CanRun,Getfood)
             WalkTo(BankLoc,false,true,false)
            local Click = Bank.Parent.ClickDetector
            fireclickdetector(Click)
-           wait(1)
+           wait(1.15)
+           if game:GetService("Players").LocalPlayer.PlayerGui.BankGUI.NoBankFrame.Visible == true then 
+                for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.BankGUI.NoBankFrame.Open.MouseButton1Click)) do
+                    v:Fire()
+                end 
+                wait(.5)
+           end 
            for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.BankGUI.Frame.Deposit.MouseButton1Click)) do 
                 local Money = string.sub(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.Money.Text,2)
                 game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("BankGUI").Frame.Amount.Text = Money
@@ -265,9 +270,8 @@ local Script = game:GetService("Players").LocalPlayer.Backpack.LocalS
 local Ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/preztel/AzureLibrary/master/uilib.lua", true))()
 
 
-local AutoFarmCate = Ui:CreateTab("Auto-Farm","",true)
+local AutoFarmCate = Ui:CreateTab("Auto-Farm","If You Don't Have A Bank Account Buy One",true)
 AutoFarmCate:CreateToggle("Money Farm", function(arg)
-    local PlayerName = game:GetService("Players").LocalPlayer.Name
     if arg == true and game.Workspace.Live:FindFirstChild(PlayerName) then 
         Controls:Disable()
         shared.MoneyFarmed = true 
@@ -335,17 +339,19 @@ AutoFarmCate:CreateToggle("Money Farm", function(arg)
                 DoJob()
             end 
         end 
-    elseif game.Workspace.Live:FindFirstChild(PlayerName) == nil then 
-        Notification("Your Not Loaded In The game")
     elseif arg == false then
         Controls:Enable()
         shared.MoneyFarmed = false 
         Notification("You Have Stopped AutoFarming")
     end 
 end)
+AutoFarmCate:CreateSlider("When To Deposit",3500,10000,function(arg)
+    shared.BankDeposit = arg
+end)
 
 function shared.MoneyFarmed1()
     Notification("ReDo")
+    shared.BankDeposit = 3500
     shared.IdleConnection:Disconnect()
     shared.IdleConnection = nil 
 end
