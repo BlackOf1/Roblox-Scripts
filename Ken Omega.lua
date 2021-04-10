@@ -30,6 +30,19 @@ repeat
      wait(5)
 until game.Workspace.Live:FindFirstChild(PlayerName) == nil 
 
+function DotPort(Position)
+    local char = game:GetService("Players").LocalPlayer.Character or game:GetService("Players").LocalPlayer.CharacterAdded:Wait()
+    local PlayerLook = char:FindFirstChild("HumanoidRootPart").CFrame.LookVector;
+    local Dis = (char:FindFirstChild("HumanoidRootPart").Position - Position).Unit
+    local Dot = Dis:Dot(PlayerLook)
+    if Dot > .5 then 
+        return true 
+    else 
+        return false 
+    end 
+end
+
+
 function GetTool(ToolName)
     local plr = game:GetService("Players").LocalPlayer
     if plr.Character then
@@ -120,12 +133,8 @@ function WalkTo(destination,state,CanRun,Getfood)
             local Bin0 = game.Workspace:FindFirstChild("Bin2")
             local Distance = (game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - Bin.Part.Position).magnitude
             local Distance1 = (game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - Bin0.Part.Position).magnitude
-            local PlayerLook = Char:FindFirstChild("Head").CFrame.LookVector
-            local DP1 = (Char:FindFirstChild("HumanoidRootPart").Position - Bin.Part.Position).Unit
-            local Dp2 = (Char:FindFirstChild("HumanoidRootPart").Position - Bin1.Part.Position).Unit
-            local DopProd1 = DP1:Dot(PlayerLook)
-            local DopProd2 = Dp2:Dot(PlayerLook)
-            if (DopProd1 > .5 and Distance < 13.5) or ( DopProd2 > .5 and Distance1 < 13.5)  then
+
+            if (DotPort(Bin.Position) == true and Distance < 13.5) or ( DotPort(Bin0.Position) == true and Distance1 < 13.5)  then
                 game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
             end 
         end)
