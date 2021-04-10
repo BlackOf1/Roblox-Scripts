@@ -207,7 +207,7 @@ function WalkTo(destination,state,CanRun,Getfood)
                 fireclickdetector(game:GetService("Workspace")["Chicken Fries: $20"].ClickDetector)
                 wait(1.15)
             end 
-            for count = 0, 6, 1  do 
+            for count = 0, 8, 1  do 
                 local Char = game:GetService("Players").LocalPlayer.Character or game:GetService("Players").LocalPlayer.CharacterAdded:Wait()
                 local Tool = GetTool("Chicken Fries")
                 Char:FindFirstChild("Humanoid"):EquipTool(Tool)
