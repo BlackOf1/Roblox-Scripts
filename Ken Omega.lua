@@ -1,6 +1,7 @@
 local StarterGui = game:GetService("StarterGui")
 local PlayerModule = require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"))
 local Controls = PlayerModule:GetControls()
+local vu = game:GetService("VirtualUser")
 
 function Notification(Msg)
     StarterGui:SetCore("SendNotification", {
@@ -10,7 +11,11 @@ function Notification(Msg)
     })
 end 
 shared.MoneyFarmed = (shared.MoneyFarmed and shared.MoneyFarmed1()) or false
-
+shared.IdleConnection = game:GetService("Players").LocalPlayer.Idled:connect(function()
+   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+   wait(1)
+   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
 
 
 
@@ -326,4 +331,6 @@ end)
 
 function shared.MoneyFarmed1()
     Notification("ReDo")
+    shared.IdleConnection:Disconnect()
+    shared.IdleConnection = nil 
 end

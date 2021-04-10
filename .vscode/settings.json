@@ -1,0 +1,21 @@
+{
+    "Lua.diagnostics.globals": [
+        "game",
+        "shared",
+        "Vector2",
+        "workspace",
+        "wait",
+        "getgc",
+        "typeof",
+        "getfenv",
+        "Enum",
+        "fireclickdetector",
+        "getconnections",
+        "Vector3",
+        "firetouchinterest",
+        "loadstring",
+        "TweenInfo",
+        "CFrame",
+        "unpack"
+    ]
+}
