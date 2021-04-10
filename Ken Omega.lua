@@ -125,7 +125,7 @@ function WalkTo(destination,state,CanRun,Getfood)
             local Dp2 = (Char:FindFirstChild("HumanoidRootPart").Position - Bin1.Part.Position).Unit
             local DopProd1 = DP1:Dot(PlayerLook)
             local DopProd2 = Dp2:Dot(PlayerLook)
-            if (DopProd1 > .5 and Distance < 10) or ( DopProd2 > .5 and Distance1 < 10)  then
+            if (DopProd1 > .5 and Distance < 13.5) or ( DopProd2 > .5 and Distance1 < 13.5)  then
                 game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
             end 
         end)
@@ -157,7 +157,7 @@ function WalkTo(destination,state,CanRun,Getfood)
             WalkTo(BankLoc,false,true,false)
            local Click = Bank.Parent.ClickDetector
            fireclickdetector(Click)
-           wait(1.1)
+           wait(1.45)
            for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.BankGUI.Frame.Deposit.MouseButton1Click)) do 
                 local Money = string.sub(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.Money.Text,2)
                 game:GetService("Players").LocalPlayer.PlayerGui.BankGUI.Frame.Amount.Text = Money
@@ -181,7 +181,7 @@ function WalkTo(destination,state,CanRun,Getfood)
             WalkTo(BankLoc,false,true,false)
            local Click = Bank.Parent.ClickDetector
            fireclickdetector(Click)
-           wait(1.15)
+           wait(1.45)
            if game:GetService("Players").LocalPlayer.PlayerGui.BankGUI.NoBankFrame.Visible == true then 
                 for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.BankGUI.NoBankFrame.Open.MouseButton1Click)) do
                     v:Fire()
