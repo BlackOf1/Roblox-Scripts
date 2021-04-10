@@ -1,7 +1,16 @@
 local StarterGui = game:GetService("StarterGui")
-local PlayerModule = require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"))
+local PlayerModule = require(game:GetService("Players").LocalPlayer.PlayerScripts:WaitForChild("PlayerModule"))
 local Controls = PlayerModule:GetControls()
 local vu = game:GetService("VirtualUser")
+
+shared.MoneyFarmed = (shared.MoneyFarmed and shared.MoneyFarmed1()) or false
+shared.IdleConnection = game:GetService("Players").LocalPlayer.Idled:connect(function()
+   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+   wait(1)
+   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+
+
 
 function Notification(Msg)
     StarterGui:SetCore("SendNotification", {
@@ -10,12 +19,21 @@ function Notification(Msg)
         Duration = 4,
     })
 end 
-shared.MoneyFarmed = (shared.MoneyFarmed and shared.MoneyFarmed1()) or false
-shared.IdleConnection = game:GetService("Players").LocalPlayer.Idled:connect(function()
-   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-   wait(1)
-   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-end)
+
+function GetTool(ToolName)
+    local plr = game:GetService("Players").LocalPlayer
+    if plr.Character then
+        local Tool = plr.Backpack:FindFirstChild(ToolName)
+        local Tool1 = plr.Character:FindFirstChild(ToolName)
+        if Tool then 
+            return Tool
+        elseif Tool1 then 
+            return Tool1
+        end 
+    end 
+end 
+
+
 
 
 
@@ -49,7 +67,7 @@ end
 
 
 function WalkTo(destination,state,CanRun,Getfood)
-   local Char =  game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+   local Char =  game:GetService("Players").LocalPlayer.Character or game:GetService("Players").LocalPlayer.CharacterAdded:Wait()
     local RunOn = false
     local PathfindingService = game:GetService("PathfindingService")
  
@@ -60,7 +78,7 @@ function WalkTo(destination,state,CanRun,Getfood)
     local waypoints = path:GetWaypoints(1,1.5,nil)
     local Money = tonumber(string.sub(game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.Money.Text,2))
     path.Blocked:Connect(function()
-        game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
+        game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
     end)
     for _, waypoint in pairs(waypoints) do
         local CombatTag = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.CombatTag.Visible
@@ -69,7 +87,6 @@ function WalkTo(destination,state,CanRun,Getfood)
         if CanSpeed1 == true and CanRun == true and RunOn == false then 
             print(RunOn)
             RunOn = true
-            print("Ok")
             local Co = coroutine.create(function()
                 Run()
             end)
@@ -77,16 +94,15 @@ function WalkTo(destination,state,CanRun,Getfood)
         elseif CanSpeed1 == false and RunOn == true and CanRun == true then
             print(RunOn)
             RunOn = false 
-            print("No")
             local Co = coroutine.create(function ()
                 StopRun()
             end)
             coroutine.resume(Co)
         end 
         if waypoint.Action == Enum.PathWaypointAction.Jump then 
-            game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
+            game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
         end
-        game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):MoveTo(waypoint.Position)
+        game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid"):MoveTo(waypoint.Position)
         --print(waypoint.Action)
         
         pcall(function()
@@ -97,15 +113,15 @@ function WalkTo(destination,state,CanRun,Getfood)
             
             local Bin = game.Workspace:FindFirstChild("Bin1")
             local Bin0 = game.Workspace:FindFirstChild("Bin2")
-            local Distance = (game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - Bin.Part.Position).magnitude
-            local Distance1 = (game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - Bin0.Part.Position).magnitude
+            local Distance = (game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - Bin.Part.Position).magnitude
+            local Distance1 = (game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - Bin0.Part.Position).magnitude
             --print(Distance)
             if (Distance < 8.8) or (Distance1 < 8.8)  then
                 warn("Jumping")
-                game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
+                game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
             end 
         end)
-        game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").MoveToFinished:Wait()
+        game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid").MoveToFinished:Wait()
         if shared.MoneyFarmed == false then
             return
         end 
@@ -184,20 +200,19 @@ function WalkTo(destination,state,CanRun,Getfood)
             WalkTo(Food,true,false,false)
             for count = 0, 5, 1  do 
                 fireclickdetector(game:GetService("Workspace")["Chicken Fries: $20"].ClickDetector)
-                wait(1.5)
+                wait(1.15)
             end 
-            for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do  
-                if v.Name == "Chicken Fries" and v:IsA("Tool") then 
-                    warn("eat")
-                    game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):EquipTool(v) 
-                    wait(.5)
-                    v:Activate()
-                    wait(1.3)
-                    if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StomachBar.BarF.Bar.AbsoluteSize.X > 200 then
-                        break
-                    end
-                end 
-            end
+            for count = 0, 6, 1  do 
+                local Char = game:GetService("Players").LocalPlayer.Character or game:GetService("Players").LocalPlayer.CharacterAdded:Wait()
+                local Tool = GetTool("Chicken Fries")
+                Char:FindFirstChild("Humanoid"):EquipTool(Tool)
+                wait(.45)
+                Tool:Activate()
+                wait(1.25)
+                if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StomachBar.BarF.Bar.AbsoluteSize.X > 200 then
+                    break
+                end
+            end             
             local Co1 = coroutine.create(function ()
                 StopRun()
             end)
@@ -208,8 +223,8 @@ function WalkTo(destination,state,CanRun,Getfood)
                 for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do  
                     if v.Name == "Chicken Fries" and v:IsA("Tool") then 
                         warn("eat")
-                        game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):EquipTool(v) 
-                        game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):Activate()
+                        game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid"):EquipTool(v) 
+                        game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Tool"):Activate()
                         wait(1.1)
                         if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StomachBar.BarF.Bar.AbsoluteSize.X > 200 then
                             break
@@ -231,15 +246,15 @@ local function DoJob()
     local FirstSpot = game:GetService("Workspace").Jobs.SupplyDelivery.Japanese1.Part1
     local SecondSpot = game:GetService("Workspace").Jobs.SupplyDelivery.Japanese1.Part2
     WalkTo(FirstSpot.Position,true,true,false)
-    firetouchinterest(game:GetService("Workspace").Jobs.SupplyDelivery.Japanese1.Part1,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
-    firetouchinterest(game:GetService("Workspace").Jobs.SupplyDelivery.Japanese1.Part1,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+    firetouchinterest(game:GetService("Workspace").Jobs.SupplyDelivery.Japanese1.Part1,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,0)
+    firetouchinterest(game:GetService("Workspace").Jobs.SupplyDelivery.Japanese1.Part1,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,1)
     local Co = coroutine.create(function ()
         StopRun()
     end)
     coroutine.resume(Co)
     WalkTo(SecondSpot.Position,true,true,true)
-    firetouchinterest(game:GetService("Workspace").Jobs.SupplyDelivery.Japanese1.Part2,game.Players.LocalPlayer.Character.HumanoidRootPart,0)
-    firetouchinterest(game:GetService("Workspace").Jobs.SupplyDelivery.Japanese1.Part2,game.Players.LocalPlayer.Character.HumanoidRootPart,1)
+    firetouchinterest(game:GetService("Workspace").Jobs.SupplyDelivery.Japanese1.Part2,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,0)
+    firetouchinterest(game:GetService("Workspace").Jobs.SupplyDelivery.Japanese1.Part2,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,1)
 end
 
 
@@ -252,7 +267,7 @@ local Ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/preztel/Az
 
 local AutoFarmCate = Ui:CreateTab("Auto-Farm","",true)
 AutoFarmCate:CreateToggle("Money Farm", function(arg)
-    local PlayerName = game.Players.LocalPlayer.Name
+    local PlayerName = game:GetService("Players").LocalPlayer.Name
     if arg == true and game.Workspace.Live:FindFirstChild(PlayerName) then 
         Controls:Disable()
         shared.MoneyFarmed = true 
