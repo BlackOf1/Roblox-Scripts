@@ -120,7 +120,12 @@ function WalkTo(destination,state,CanRun,Getfood)
             local Bin0 = game.Workspace:FindFirstChild("Bin2")
             local Distance = (game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - Bin.Part.Position).magnitude
             local Distance1 = (game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - Bin0.Part.Position).magnitude
-            if (Distance < 10.8) or (Distance1 < 10.8)  then
+            local PlayerLook = Char:FindFirstChild("Head").CFrame.LookVector
+            local DP1 = (Char:FindFirstChild("HumanoidRootPart").Position - Bin.Part.Position).Unit
+            local Dp2 = (Char:FindFirstChild("HumanoidRootPart").Position - Bin1.Part.Position).Unit
+            local DopProd1 = DP1:Dot(PlayerLook)
+            local DopProd2 = Dp2:Dot(PlayerLook)
+            if (DopProd1 > .5 and Distance < 10) or ( DopProd2 > .5 and Distance1 < 10)  then
                 game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
             end 
         end)
@@ -207,7 +212,8 @@ function WalkTo(destination,state,CanRun,Getfood)
                 fireclickdetector(game:GetService("Workspace")["Chicken Fries: $20"].ClickDetector)
                 wait(1.15)
             end 
-            for count = 0, 8, 1  do 
+            for count = 0, 9, 1  do 
+                wait(.65)
                 local Char = game:GetService("Players").LocalPlayer.Character or game:GetService("Players").LocalPlayer.CharacterAdded:Wait()
                 local Tool = GetTool("Chicken Fries")
                 Char:FindFirstChild("Humanoid"):EquipTool(Tool)
