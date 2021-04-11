@@ -133,8 +133,8 @@ function WalkTo(destination,state,CanRun,Getfood)
             local Bin0 = game.Workspace:FindFirstChild("Bin2")
             local Distance = (game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - Bin.Part.Position).magnitude
             local Distance1 = (game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - Bin0.Part.Position).magnitude
-
-            if (DotPort(Bin.Position) == true and Distance < 13.5) or ( DotPort(Bin0.Position) == true and Distance1 < 13.5)  then
+            if (Distance < 10.5) or (Distance1 < 10.5)  then
+                wait(.5)
                 game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
             end 
         end)
