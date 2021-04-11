@@ -224,10 +224,12 @@ function WalkTo(destination,state,CanRun,Getfood)
                 wait(.65)
                 local Char = game:GetService("Players").LocalPlayer.Character or game:GetService("Players").LocalPlayer.CharacterAdded:Wait()
                 local Tool = GetTool("Chicken Fries")
-                Char:FindFirstChild("Humanoid"):EquipTool(Tool)
-                wait(.45)
-                Tool:Activate()
-                wait(1.25)
+                if Tool then 
+                    Char:FindFirstChild("Humanoid"):EquipTool(Tool)
+                    wait(.45)
+                    Tool:Activate()
+                    wait(1.25)
+                end 
                 if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StomachBar.BarF.Bar.AbsoluteSize.X > 200 then
                     break
                 end
