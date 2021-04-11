@@ -104,6 +104,12 @@ function WalkTo(destination,state,CanRun,Getfood)
     end)
     for _, waypoint in pairs(waypoints) do
         local CombatTag = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.CombatTag.Visible
+        local Tool = GetTool("Chicken Fries") 
+        if Tool then 
+            if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StomachBar.BarF.Bar.AbsoluteSize.X < 150 then
+                Tool:Activate()
+            end
+        end 
         local CanSpeed1 = CanSpeed()
         if CanSpeed1 == true and CanRun == true and RunOn == false then 
             RunOn = true
