@@ -16,6 +16,13 @@ local Bin1 = game.Workspace:FindFirstChild("Bins") or game.Workspace:FindFirstCh
 Bin1.Name = "Bin1"
 local Bin2 = game.Workspace:FindFirstChild("Bins") or game.Workspace:FindFirstChild("Bin2")
 Bin2.Name = "Bin2"
+local Table1 = Vector3.new(-1154.48999, 50.311264, -251.316071)
+
+local Part3 = game:GetService("Workspace"):FindFirstChild("FULOMAO") or Instance.new("Part",Workspace)
+Part3.Name = "FULOMAO"
+Part3.Anchored = true
+Part3.Position = Table1
+Part3.Size = Vector3.new(19,15,7.5)
 
 local Part = game:GetService("Workspace"):FindFirstChild("OOO1115") or Instance.new("Part",Workspace)
 Part.Name = "OOO1115"
