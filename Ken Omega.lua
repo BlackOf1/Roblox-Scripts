@@ -17,6 +17,16 @@ Bin1.Name = "Bin1"
 local Bin2 = game.Workspace:FindFirstChild("Bins") or game.Workspace:FindFirstChild("Bin2")
 Bin2.Name = "Bin2"
 local Table1 = Vector3.new(-1154.48999, 50.311264, -251.316071)
+local Table2 = Vector3.new(-1122.60913, 50.311264, -277.160583)
+local Table3 = Vector3.new(-1149.11084, 50.311264, -277.352814)
+local Table4 = Vector3.new(-1127.39624, 50.311264, -250.889053)
+
+local Part4 = game:GetService("Workspace"):FindFirstChild("OLAH#$%HA") or Instance.new("Part",Workspace)
+Part4.Name = "OLAH#$%HA"
+Part4.Transparency = 1
+Part4.Anchored = true
+Part4.Position = Table4
+Part4.Size = Vector3.new(19,15,7.5)
 
 local Part3 = game:GetService("Workspace"):FindFirstChild("FULOMAO") or Instance.new("Part",Workspace)
 Part3.Name = "FULOMAO"
@@ -24,6 +34,22 @@ Part3.Anchored = true
 Part3.Transparency = 1 
 Part3.Position = Table1
 Part3.Size = Vector3.new(19,15,7.5)
+
+local Part5 = game:GetService("Workspace"):FindFirstChild("!)(*&$IKUQKHJGDA") or Instance.new("Part",Workspace)
+Part5.Name = "!)(*&$IKUQKHJGDA"
+Part5.Transparency = 1
+Part5.Anchored = true
+Part5.Position = Table3
+Part5.Size = Vector3.new(5,14,6.5)
+ 
+local Part6 = game:GetService("Workspace"):FindFirstChild("!)(*LKJX!(*)DHM<A") or Instance.new("Part",Workspace)
+Part6.Name = "!)(*LKJX!(*)DHM<A"
+Part6.Anchored = true
+Part6.Transparency = 1
+Part6.Position = Table2
+Part6.Size = Vector3.new(12,13,7.5)
+
+
 
 local Part = game:GetService("Workspace"):FindFirstChild("OOO1115") or Instance.new("Part",Workspace)
 Part.Name = "OOO1115"
