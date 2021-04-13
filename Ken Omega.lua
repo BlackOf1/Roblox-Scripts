@@ -41,6 +41,8 @@ local Table1 = Vector3.new(-1154.48999, 50.311264, -251.316071)
 local Table2 = Vector3.new(-1122.60913, 50.311264, -277.160583)
 local Table3 = Vector3.new(-1149.11084, 50.311264, -277.352814)
 local Table4 = Vector3.new(-1127.39624, 50.311264, -250.889053)
+local Table5 = Vector3.new(-1125.3999, 45.1999054, -265.099854)
+local Table6 = Vector3.new(-1154.3999, 45.1999054, -265.099854)
 
 local Part4 = game:GetService("Workspace"):FindFirstChild("OLAH#$%HA") or Instance.new("Part",Workspace)
 Part4.Name = "OLAH#$%HA"
@@ -74,14 +76,14 @@ local Part = game:GetService("Workspace"):FindFirstChild("OOO1115") or Instance.
 Part.Name = "OOO1115"
 Part.Anchored = true
 Part.Transparency = 1 
-Part.Position = Bin1.Part.Position
+Part.Position = Table5
 Part.Size = Vector3.new(5,20,7.5)
 
 local Part1 = game:GetService("Workspace"):FindFirstChild("101010101001") or Instance.new("Part",Workspace)
 Part.Name = "101010101001"
 Part1.Anchored = true
 Part1.Transparency = 1 
-Part1.Position = Bin2.Part.Position
+Part1.Position = Table6
 Part1.Size = Vector3.new(5,20,7.5)
 
 
