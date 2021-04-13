@@ -21,6 +21,7 @@ local Table1 = Vector3.new(-1154.48999, 50.311264, -251.316071)
 local Part3 = game:GetService("Workspace"):FindFirstChild("FULOMAO") or Instance.new("Part",Workspace)
 Part3.Name = "FULOMAO"
 Part3.Anchored = true
+Part3.Transparency = 1 
 Part3.Position = Table1
 Part3.Size = Vector3.new(19,15,7.5)
 
