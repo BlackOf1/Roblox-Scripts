@@ -31,9 +31,12 @@ shared.IdleConnection = game:GetService("Players").LocalPlayer.Idled:connect(fun
 end)
 
 local Bin1 = game.Workspace:FindFirstChild("Bins") or game.Workspace:FindFirstChild("Bin1")
-Bin1.Name = "Bin1"
 local Bin2 = game.Workspace:FindFirstChild("Bins") or game.Workspace:FindFirstChild("Bin2")
-Bin2.Name = "Bin2"
+
+if Bin1 then
+    Bin1.Name = "Bin1"
+    Bin2.Name = "Bin2"
+end
 local Table1 = Vector3.new(-1154.48999, 50.311264, -251.316071)
 local Table2 = Vector3.new(-1122.60913, 50.311264, -277.160583)
 local Table3 = Vector3.new(-1149.11084, 50.311264, -277.352814)
