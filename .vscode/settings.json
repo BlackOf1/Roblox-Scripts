@@ -16,6 +16,8 @@
         "loadstring",
         "TweenInfo",
         "CFrame",
-        "unpack"
+        "unpack",
+        "Instance",
+        "Workspace"
     ]
 }

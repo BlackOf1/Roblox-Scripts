@@ -12,6 +12,23 @@ shared.IdleConnection = game:GetService("Players").LocalPlayer.Idled:connect(fun
    vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 end)
 
+local Bin1 = game.Workspace:FindFirstChild("Bins") or game.Workspace:FindFirstChild("Bin1")
+Bin1.Name = "Bin1"
+local Bin2 = game.Workspace:FindFirstChild("Bins") or game.Workspace:FindFirstChild("Bin2")
+Bin2.Name = "Bin2"
+
+local Part = Instance.new("Part",Workspace)
+Part.Anchored = true
+Part.Visible = false 
+Part.Position = Bin1.Part.Position
+Part.Size = Vector3.new(5,20,7.5)
+
+local Part1 = Instance.new("Part",Workspace)
+Part1.Anchored = true
+Part1.Visible = false 
+Part1.Position = Bin2.Part.Position
+Part1.Size = Vector3.new(5,20,7.5)
+
 
 
 function Notification(Msg)
@@ -135,11 +152,11 @@ function WalkTo(destination,state,CanRun,Getfood)
             local Bin2 = game.Workspace:FindFirstChild("Bins") or game.Workspace:FindFirstChild("Bin2")
             Bin2.Name = "Bin2"
             
+            local Chair = Vector3.new(-1150.20654, 50.311264, -251.355392)
             local Bin = game.Workspace:FindFirstChild("Bin1")
             local Bin0 = game.Workspace:FindFirstChild("Bin2")
-            local Distance = (game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - Bin.Part.Position).magnitude
-            local Distance1 = (game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - Bin0.Part.Position).magnitude
-            if (Distance < 10.5) or (Distance1 < 10.5)  then
+            local Distance = (game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - Char).magnitude
+            if (Distance < 6.5)   then
                 game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
             end 
         end)
