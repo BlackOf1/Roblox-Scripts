@@ -17,15 +17,17 @@ Bin1.Name = "Bin1"
 local Bin2 = game.Workspace:FindFirstChild("Bins") or game.Workspace:FindFirstChild("Bin2")
 Bin2.Name = "Bin2"
 
-local Part = Instance.new("Part",Workspace)
+local Part = game:GetService("Workspace"):FindFirstChild("OOO1115") or Instance.new("Part",Workspace)
+Part.Name = "OOO1115"
 Part.Anchored = true
-Part.Visible = false 
+Part.Transparency = 1 
 Part.Position = Bin1.Part.Position
 Part.Size = Vector3.new(5,20,7.5)
 
-local Part1 = Instance.new("Part",Workspace)
+local Part1 = game:GetService("Workspace"):FindFirstChild("101010101001") or Instance.new("Part",Workspace)
+Part.Name = "101010101001"
 Part1.Anchored = true
-Part1.Visible = false 
+Part1.Transparency = 1 
 Part1.Position = Bin2.Part.Position
 Part1.Size = Vector3.new(5,20,7.5)
 
