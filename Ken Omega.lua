@@ -4,7 +4,25 @@ local PlayerName = game:GetService("Players").LocalPlayer.Name
 local Controls = PlayerModule:GetControls()
 local vu = game:GetService("VirtualUser")
 
+local mt = getrawmetatable(game)
 shared.MoneyFarmed = (shared.MoneyFarmed and shared.MoneyFarmed1()) or false
+shared.namecall = mt.__namecall
+shared.InfinitStam = shared.InfinitStam or false
+
+setreadonly(mt,false)
+mt.__namecall = newcclosure(function(self, ...)
+    local method = getnamecallmethod()
+    local args = {...} --gets all arguments
+
+    if method == "FireServer" and args[2] == "RunToggle" and shared.InfinitStam == true then
+        return wait(9e9)
+    end
+    return shared.namecall(self, ...)
+end)
+setreadonly(mt,true)
+
+
+
 shared.BankDeposit = shared.BankDeposit or 3500
 shared.IdleConnection = game:GetService("Players").LocalPlayer.Idled:connect(function()
    vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
@@ -220,7 +238,9 @@ function WalkTo(destination,state,CanRun,Getfood)
                 shared.StopRun()
             end)
             coroutine.resume(Co)
+            shared.InfinitStam = true 
             WalkTo(BankLoc,false,true,false)
+            shared.InfinitStam = false 
            local Click = Bank.Parent.ClickDetector
            fireclickdetector(Click)
            wait(1.45)
@@ -244,7 +264,9 @@ function WalkTo(destination,state,CanRun,Getfood)
                 shared.StopRun()
             end)
             coroutine.resume(Co)
+            shared.InfinitStam = true 
             WalkTo(BankLoc,false,true,false)
+            shared.InfinitStam = false 
            local Click = Bank.Parent.ClickDetector
            fireclickdetector(Click)
            wait(1.45)
@@ -440,9 +462,14 @@ end)
 
 function shared.MoneyFarmed1()
     Notification("ReDo")
+    setreadonly(mt, false) 
+    mt.__namecall = shared.namecall
+    setreadonly(mt, true)
     shared.BankDeposit = 3500
+    shared.InfinitStam = false 
     shared.Run = nil 
     shared.StopRun = nil 
     shared.IdleConnection:Disconnect()
     shared.IdleConnection = nil 
+    shared.MoneyFarmed1 = nil
 end

@@ -18,6 +18,10 @@
         "CFrame",
         "unpack",
         "Instance",
-        "Workspace"
+        "Workspace",
+        "getrawmetatable",
+        "setreadonly",
+        "newcclosure",
+        "getnamecallmethod"
     ]
 }
