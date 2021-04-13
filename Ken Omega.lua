@@ -15,6 +15,10 @@ mt.__namecall = newcclosure(function(self, ...)
     local args = {...} --gets all arguments
 
     if method == "FireServer" and args[2] == "RunToggle" and shared.InfinitStam == true then
+        local Human = game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid")
+        if Human then 
+            Human.WalkSpeed = 29
+        end 
         return wait(9e9)
     end
     return shared.namecall(self, ...)
