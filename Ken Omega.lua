@@ -111,8 +111,8 @@ end
 
 
 
-local Run = nil
-local StopRun = nil
+shared.Run = shared.Run or nil 
+local StopRun = shared.StopRun or nil 
 local Script = game:GetService("Players").LocalPlayer.Backpack.LocalS
 for _, v in next, getgc() do
     if typeof(v) == "function" then
@@ -120,14 +120,15 @@ for _, v in next, getgc() do
         if script and typeof(script) == "Instance" then
             if script == Script then
                 if debug.getinfo(v).name == "runPrompt" then 
-                 Run = v
+                shared.Run = v
                 elseif debug.getinfo(v).name == "stopSprint" then 
-                StopRun = v
+                shared.StopRun = v
                 end 
             end
         end
     end
 end
+
 local function CanSpeed()
     local Bar = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Utility.StamBar.BarF.Bar.AbsoluteSize.X
     if Bar <= 115 then 
@@ -165,13 +166,13 @@ function WalkTo(destination,state,CanRun,Getfood)
         if CanSpeed1 == true and CanRun == true and RunOn == false then 
             RunOn = true
             local Co = coroutine.create(function()
-                Run()
+                shared.Run()
             end)
             coroutine.resume(Co)
         elseif CanSpeed1 == false and RunOn == true and CanRun == true then
             RunOn = false 
             local Co = coroutine.create(function ()
-                StopRun()
+                shared.StopRun()
             end)
             coroutine.resume(Co)
         end 
@@ -202,13 +203,13 @@ function WalkTo(destination,state,CanRun,Getfood)
         if CanSpeed2 == true and CanRun == true and RunOn == false then 
             RunOn = true
             local Co = coroutine.create(function()
-                Run()
+                shared.Run()
             end)
             coroutine.resume(Co)
         elseif CanSpeed2 == false and RunOn == true and CanRun == true then
             RunOn = false 
             local Co = coroutine.create(function ()
-                StopRun()
+                shared.StopRun()
             end)
             coroutine.resume(Co)
         end 
@@ -216,7 +217,7 @@ function WalkTo(destination,state,CanRun,Getfood)
             local Bank = game:GetService("Workspace").Bank.Part
             local BankLoc = Bank.Position
             local Co = coroutine.create(function ()
-                StopRun()
+                shared.StopRun()
             end)
             coroutine.resume(Co)
             WalkTo(BankLoc,false,true,false)
@@ -230,7 +231,7 @@ function WalkTo(destination,state,CanRun,Getfood)
                 v:Fire()
             end
             local Co1 = coroutine.create(function ()
-                StopRun()
+                shared.StopRun()
             end)
             coroutine.resume(Co1)
             WalkTo(destination,true,true,true)
@@ -240,7 +241,7 @@ function WalkTo(destination,state,CanRun,Getfood)
             local BankLoc = Bank.Position
             warn("Bank")
             local Co = coroutine.create(function()
-                StopRun()
+                shared.StopRun()
             end)
             coroutine.resume(Co)
             WalkTo(BankLoc,false,true,false)
@@ -260,7 +261,7 @@ function WalkTo(destination,state,CanRun,Getfood)
                 v:Fire()
             end
             local Co1 = coroutine.create(function ()
-                StopRun()
+                shared.StopRun()
             end)
             coroutine.resume(Co1)
             WalkTo(destination,true,true,true)
@@ -269,7 +270,7 @@ function WalkTo(destination,state,CanRun,Getfood)
             local Food = Vector3.new(-1125.52173, 47.2412643, -294.940125)
             warn("Food")
             local Co = coroutine.create(function ()
-                StopRun()
+                shared.StopRun()
             end)
             coroutine.resume(Co)
             WalkTo(Food,true,false,false)
@@ -292,7 +293,7 @@ function WalkTo(destination,state,CanRun,Getfood)
                 end
             end             
             local Co1 = coroutine.create(function ()
-                StopRun()
+                shared.StopRun()
             end)
             coroutine.resume(Co1)
             WalkTo(destination,true,true,true)
@@ -310,7 +311,7 @@ function WalkTo(destination,state,CanRun,Getfood)
                     end 
                 end
                 local Co = coroutine.create(function ()
-                    StopRun()
+                    shared.StopRun()
                 end)
                 coroutine.resume(Co)
                 WalkTo(destination,true,true,true)
@@ -327,7 +328,7 @@ local function DoJob()
     firetouchinterest(game:GetService("Workspace").Jobs.SupplyDelivery.Japanese1.Part1,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,0)
     firetouchinterest(game:GetService("Workspace").Jobs.SupplyDelivery.Japanese1.Part1,game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,1)
     local Co = coroutine.create(function ()
-        StopRun()
+        shared.StopRun()
     end)
     coroutine.resume(Co)
     WalkTo(SecondSpot.Position,true,true,true)
@@ -349,10 +350,25 @@ AutoFarmCate:CreateToggle("Money Farm", function(arg)
         Controls:Disable()
         shared.MoneyFarmed = true 
         if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI") == nil and shared.MoneyFarmed == true  then
+            local Script = game:GetService("Players").LocalPlayer.Backpack.LocalS
+            for _, v in next, getgc() do
+                if typeof(v) == "function" then
+                local script = getfenv(v).script
+                    if script and typeof(script) == "Instance" then
+                        if script == Script then
+                            if debug.getinfo(v).name == "runPrompt" then 
+                            shared.Run = v
+                            elseif debug.getinfo(v).name == "stopSprint" then 
+                            shared.StopRun = v
+                            end 
+                        end
+                    end
+                end
+            end
             local Board = Vector3.new(-1166.06531, 47.1613693, -224.598022)
             while shared.MoneyFarmed == true do
                 local Co = coroutine.create(function ()
-                    StopRun()
+                    shared.StopRun()
                 end)
                 coroutine.resume(Co)
                 WalkTo(Board,true,false,true)
@@ -385,7 +401,7 @@ AutoFarmCate:CreateToggle("Money Farm", function(arg)
             while shared.MoneyFarmed == true do
                 if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI") == nil or game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("JobGUI").Frame.Title.Text ~= "Restock Job" and shared.MoneyFarmed == true then 
                     local Co = coroutine.create(function ()
-                        StopRun()
+                        shared.StopRun()
                     end)
                     coroutine.resume(Co)
                     WalkTo(Board.Position,true,true,true)
@@ -425,6 +441,8 @@ end)
 function shared.MoneyFarmed1()
     Notification("ReDo")
     shared.BankDeposit = 3500
+    shared.Run = nil 
+    shared.StopRun = nil 
     shared.IdleConnection:Disconnect()
     shared.IdleConnection = nil 
 end
