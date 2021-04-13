@@ -453,6 +453,7 @@ AutoFarmCate:CreateToggle("Money Farm", function(arg)
     elseif arg == false then
         Controls:Enable()
         shared.MoneyFarmed = false 
+        shared.InfinitStam = false 
         Notification("You Have Stopped AutoFarming")
     end 
 end)
