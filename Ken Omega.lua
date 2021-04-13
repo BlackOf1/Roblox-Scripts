@@ -468,6 +468,7 @@ end)
 
 function shared.MoneyFarmed1()
     Notification("ReDo")
+    warn("Redo")
     setreadonly(mt, false) 
     mt.__namecall = shared.namecall
     setreadonly(mt, true)
