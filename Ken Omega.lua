@@ -6,7 +6,7 @@ local vu = game:GetService("VirtualUser")
 
 local mt = getrawmetatable(game)
 shared.MoneyFarmed = (shared.MoneyFarmed and shared.MoneyFarmed1()) or false
-shared.namecall = mt.__namecall
+shared.namecall = shared.namecall or mt.__namecall
 shared.InfinitStam = shared.InfinitStam or false
 
 setreadonly(mt,false)
