@@ -49,8 +49,6 @@ Part6.Transparency = 1
 Part6.Position = Table2
 Part6.Size = Vector3.new(12,13,7.5)
 
-
-
 local Part = game:GetService("Workspace"):FindFirstChild("OOO1115") or Instance.new("Part",Workspace)
 Part.Name = "OOO1115"
 Part.Anchored = true
