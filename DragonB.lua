@@ -4,7 +4,7 @@ game:GetService("Players").LocalPlayer.Idled:connect(function()
    wait(1)
    vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 end)
-game.Workspace.FallenPartsDestroyHeight = -500000000
+game.Workspace.FallenPartsDestroyHeight = -5000000000000
 spawn(function()
     while wait() do  
         pcall(function()
