@@ -40,19 +40,20 @@ spawn(function()
         end 
          if NpcShadow and  game:GetService("Players").LocalPlayer.Character and game.Players.LocalPlayer.Character.Config.Resting.Value == false  then 
              game.Players.LocalPlayer.Character.Config.Resting.Value = true
-            game:GetService("Players").LocalPlayer.Character.Client.Events.Rest:FireServer()
+            --game:GetService("Players").LocalPlayer.Character.Client.Events.Rest:FireServer()
          elseif NpcShadow == nil then 
              game.Players.LocalPlayer.Character.Config.Resting.Value = false 
-             game:GetService("Players").LocalPlayer.Character.Client.Events.Rest:FireServer()
+             --game:GetService("Players").LocalPlayer.Character.Client.Events.Rest:FireServer()
          end 
          if NpcShadow and game:GetService("Players").LocalPlayer.Character then 
              local args = {[1] = "SecretCode"}
              game:GetService("Players").LocalPlayer.Character.Client.Events.LightAttack:FireServer(unpack(args))
-             local Look = CFrame.lookat(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,NpcShadow.HumanoidRootPart.Position)
+             local Look = CFrame.lookAt(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,NpcShadow.HumanoidRootPart.Position)
              local perHrp = NpcShadow.HumanoidRootPart.CFrame * CFrame.new(0,0,-1)
-             game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = perHrp  
-             game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = Look
-
+             local x, y, z, r00, r01, r02, r10, r11, r12, r20, r21, r22 = Look:components()
+             local x1, y1, z1, r001, r011, r021, r101, r111, r121, r201, r211, r221 = perHrp:components()
+             --game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = perHrp  
+             game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(x1,y2,z1,r00, r01, r02, r10, r11, r12, r20, r21, r22)
          end 
      end)
  end 
