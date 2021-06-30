@@ -21,6 +21,8 @@ spawn(function()
                     game.Players.LocalPlayer.Character.Config.Flying.Value = false 
                 elseif game.Players.LocalPlayer.Character.Config.CanBlock.Value == false then 
                     game.Players.LocalPlayer.Character.Config.CanBlock.Value = true 
+                elseif game:GetService("Players").LocalPlayer.Character.Config.BPMultiplier.Value  > 20 then 
+                    game:GetService("Players").LocalPlayer.Character.Config.BPMultiplier.Value = 20 
                 end
             end 
         end)
