@@ -7,22 +7,24 @@ end)
 game.Workspace.FallenPartsDestroyHeight = -500000000
 spawn(function()
     while wait() do  
-    pcall(function()
-        if game:GetService("Players").LocalPlayer.Character then 
+        pcall(function()
+            if game:GetService("Players").LocalPlayer.Character then 
                 if  game.Players.LocalPlayer.Character.Config.AttackCooldown.Value == true then 
                     game.Players.LocalPlayer.Character.Config.AttackCooldown.Value = false 
                 elseif game.Players.LocalPlayer.Character.Config.CAttackCooldown.Value == true then
                     game.Players.LocalPlayer.Character.Config.CAttackCooldown.Value = false
                 elseif game.Players.LocalPlayer.Character.Config.Stunned.Value == true then 
                     game.Players.LocalPlayer.Character.Config.Stunned.Value = false
-                elseif  game.Players.LocalPlayer.Character.CanRecover.Value == false then 
-                    game.Players.LocalPlayer.Character.CanRecover.Value = true
+                elseif  game.Players.LocalPlayer.Character.Config.CanRecover.Value == false then 
+                    game.Players.LocalPlayer.Character.Config.CanRecover.Value = true
                 elseif game.Players.LocalPlayer.Character.Config.Flying.Value == true then 
                     game.Players.LocalPlayer.Character.Config.Flying.Value = false 
                 elseif game.Players.LocalPlayer.Character.Config.CanBlock.Value == false then 
                     game.Players.LocalPlayer.Character.Config.CanBlock.Value = true
                 elseif game.Players.LocalPlayer.Character.Config.Blocking.Value == false then 
                     game:GetService("Players").LocalPlayer.Character.Client.Events.Block:InvokeServer()
+                elseif game.Players.LocalPlayer.Character.Config.Boosting.Value == false  then 
+                    game.Players.LocalPlayer.Character.Config.Boosting.Value = true
                 end 
             end 
         end)
@@ -46,9 +48,10 @@ spawn(function()
          if NpcShadow and game:GetService("Players").LocalPlayer.Character then 
              local args = {[1] = "SecretCode"}
              game:GetService("Players").LocalPlayer.Character.Client.Events.LightAttack:FireServer(unpack(args))
-             local perHrp = NpcShadow.HumanoidRootPart.CFrame * CFrame.new(0,0,1)
-             game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = perHrp
-             
+             local Look = CFrame.lookat(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,NpcShadow.HumanoidRootPart.Position)
+             local perHrp = NpcShadow.HumanoidRootPart.CFrame * CFrame.new(0,0,-1)
+             game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = perHrp  
+
          end 
      end)
  end 
