@@ -21,6 +21,7 @@ spawn(function()
                     game.Players.LocalPlayer.Character.Config.Flying.Value = false 
                 elseif game.Players.LocalPlayer.Character.Config.CanBlock.Value == false then 
                     game.Players.LocalPlayer.Character.Config.CanBlock.Value = true 
+                end
             end 
         end)
     end
