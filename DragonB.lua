@@ -19,6 +19,10 @@ spawn(function()
                     game.Players.LocalPlayer.Character.CanRecover.Value = true
                 elseif game.Players.LocalPlayer.Character.Config.Flying.Value == true then 
                     game.Players.LocalPlayer.Character.Config.Flying.Value = false 
+                elseif game.Players.LocalPlayer.Character.Config.CanBlock.Value == false then 
+                    game.Players.LocalPlayer.Character.Config.CanBlock.Value = true
+                elseif game.Players.LocalPlayer.Character.Config.Blocking.Value == false then 
+                    game:GetService("Players").LocalPlayer.Character.Client.Events.Block:InvokeServer()
                 end 
             end 
         end)
@@ -34,15 +38,17 @@ spawn(function()
         end 
          if NpcShadow and  game:GetService("Players").LocalPlayer.Character and game.Players.LocalPlayer.Character.Config.Resting.Value == false  then 
              game.Players.LocalPlayer.Character.Config.Resting.Value = true
+            game:GetService("Players").LocalPlayer.Character.Client.Events.Rest:FireServer()
          elseif NpcShadow == nil then 
              game.Players.LocalPlayer.Character.Config.Resting.Value = false 
+             game:GetService("Players").LocalPlayer.Character.Client.Events.Rest:FireServer()
          end 
          if NpcShadow and game:GetService("Players").LocalPlayer.Character then 
              local args = {[1] = "SecretCode"}
              game:GetService("Players").LocalPlayer.Character.Client.Events.LightAttack:FireServer(unpack(args))
              local perHrp = NpcShadow.HumanoidRootPart.CFrame * CFrame.new(0,0,1)
              game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = perHrp
-             game:GetService("Players").LocalPlayer.Character.Client.Events:FindFirstChild("Zenkai Vanish"):FireServer()
+             
          end 
      end)
  end 
