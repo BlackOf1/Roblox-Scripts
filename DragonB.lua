@@ -60,7 +60,7 @@ spawn(function()
              local perHrp = _G.NpcShadow.HumanoidRootPart.CFrame * CFrame.new(0,0,-1)
              local x, y, z, r00, r01, r02, r10, r11, r12, r20, r21, r22 = Look:components()
              local x1, y1, z1, r001, r011, r021, r101, r111, r121, r201, r211, r221 = perHrp:components()
-             game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(x1,y2,z1,r00, r01, r02, r10, r11, r12, r20, r21, r22)
+             game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(x1,y1,z1,r00, r01, r02, r10, r11, r12, r20, r21, r22)
          end 
      end)
  end 
