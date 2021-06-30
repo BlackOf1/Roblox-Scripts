@@ -29,7 +29,7 @@ spawn(function()
          local NpcShadow = game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name.."'s Shadow Image")
          if game.Players.LocalPlayer.Character and NpcShadow == nil then
             game:GetService("Players").LocalPlayer.Character.Client.Events:FindFirstChild("Shadow Spar"):FireServer()
-            wait(1.5)
+            wait(1)
             NpcShadow = game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name.."'s Shadow Image")
         end 
          if NpcShadow and  game:GetService("Players").LocalPlayer.Character and game.Players.LocalPlayer.Character.Config.Resting.Value == false  then 
