@@ -20,10 +20,7 @@ spawn(function()
                 elseif game.Players.LocalPlayer.Character.Config.Flying.Value == true then 
                     game.Players.LocalPlayer.Character.Config.Flying.Value = false 
                 elseif game.Players.LocalPlayer.Character.Config.CanBlock.Value == false then 
-                    game.Players.LocalPlayer.Character.Config.CanBlock.Value = true
-                elseif game.Players.LocalPlayer.Character.Config.Boosting.Value == false  then 
-                    game.Players.LocalPlayer.Character.Config.Boosting.Value = true
-                end 
+                    game.Players.LocalPlayer.Character.Config.CanBlock.Value = true 
             end 
         end)
     end
