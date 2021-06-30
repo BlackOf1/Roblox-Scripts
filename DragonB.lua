@@ -10,6 +10,8 @@ spawn(function()
                     game.Players.LocalPlayer.Character.Config.Stunned.Value = false
                 elseif  game.Players.LocalPlayer.Character.CanRecover.Value == false then 
                     game.Players.LocalPlayer.Character.CanRecover.Value = true
+                elseif game.Players.LocalPlayer.Character.Config.Flying.Value == true then 
+                    game.Players.LocalPlayer.Character.Config.Flying.Value = false 
                 end 
             end 
         end)
@@ -28,9 +30,6 @@ spawn(function()
              game:GetService("Players").LocalPlayer.Character.Client.Events.LightAttack:FireServer(unpack(args))
              local perHrp = NpcShadow.HumanoidRootPart.CFrame * CFrame.new(0,0,1)
              game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = perHrp
-             if game.Players.LocalPlayer.Character.Config.Flying.Value == true then 
-                game.Players.LocalPlayer.Character.Config.Flying.Value = false 
-             end
              game:GetService("Players").LocalPlayer.Character.Client.Events:FindFirstChild("Zenkai Vanish"):FireServer()
          end 
      end)
