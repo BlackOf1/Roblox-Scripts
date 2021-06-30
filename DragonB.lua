@@ -51,6 +51,7 @@ spawn(function()
              local Look = CFrame.lookat(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,NpcShadow.HumanoidRootPart.Position)
              local perHrp = NpcShadow.HumanoidRootPart.CFrame * CFrame.new(0,0,-1)
              game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = perHrp  
+             game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = Look
 
          end 
      end)
