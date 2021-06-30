@@ -42,7 +42,7 @@ spawn(function()
  end)
  while wait() do
      pcall(function()
-         local _G.NpcShadow = game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name.."'s Shadow Image")
+         _G.NpcShadow = game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name.."'s Shadow Image")
          if game.Players.LocalPlayer.Character and _G.NpcShadow == nil then
             game:GetService("Players").LocalPlayer.Character.Client.Events:FindFirstChild("Shadow Spar"):FireServer()
             wait(1)
