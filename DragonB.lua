@@ -33,7 +33,7 @@ spawn(function()
         pcall(function()
             if game:GetService("Players").LocalPlayer.Character and _G.NpcShadow then 
                 game:GetService("Players").LocalPlayer.Character.Client.Events.Block:InvokeServer()
-                wait(3.25)
+                wait(2.75)
                 game:GetService("Players").LocalPlayer.Character.Client.Events.StopBlocking:InvokeServer()
                 wait(5)
             end 
