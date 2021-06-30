@@ -4,6 +4,7 @@ game:GetService("Players").LocalPlayer.Idled:connect(function()
    wait(1)
    vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 end)
+game.Workspace.FallenPartsDestroyHeight = -500000000
 spawn(function()
     while wait() do  
     pcall(function()
@@ -28,7 +29,8 @@ spawn(function()
          local NpcShadow = game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name.."'s Shadow Image")
          if game.Players.LocalPlayer.Character and NpcShadow == nil then
             game:GetService("Players").LocalPlayer.Character.Client.Events:FindFirstChild("Shadow Spar"):FireServer()
-         end 
+            NpcShadow = game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name.."'s Shadow Image")
+        end 
          if NpcShadow and  game:GetService("Players").LocalPlayer.Character and game.Players.LocalPlayer.Character.Config.Resting.Value == false  then 
              game.Players.LocalPlayer.Character.Config.Resting.Value = true
          elseif NpcShadow == nil then 
