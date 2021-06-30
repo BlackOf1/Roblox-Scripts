@@ -1,22 +1,20 @@
 spawn(function()
     while wait() do  
-        pcall(function()
-            if game:GetService("Players").LocalPlayer.Character then 
-                    if  game.Players.LocalPlayer.Character.Config.AttackCooldown.Value == true then 
-                        game.Players.LocalPlayer.Character.Config.AttackCooldown.Value = false 
-                    elseif game.Players.LocalPlayer.Character.Config.CAttackCooldown.Value == true then
-                        game.Players.LocalPlayer.Character.Config.CAttackCooldown.Value = false
-                    elseif game.Players.LocalPlayer.Character.Config.Stunned.Value == true then 
-                        game.Players.LocalPlayer.Character.Config.Stunned.Value = false
-                    elseif  game.Players.LocalPlayer.Character.CanRecover.Value == false then 
-                        game.Players.LocalPlayer.Character.CanRecover.Value = true
-                    end 
+    pcall(function()
+        if game:GetService("Players").LocalPlayer.Character then 
+                if  game.Players.LocalPlayer.Character.Config.AttackCooldown.Value == true then 
+                    game.Players.LocalPlayer.Character.Config.AttackCooldown.Value = false 
+                elseif game.Players.LocalPlayer.Character.Config.CAttackCooldown.Value == true then
+                    game.Players.LocalPlayer.Character.Config.CAttackCooldown.Value = false
+                elseif game.Players.LocalPlayer.Character.Config.Stunned.Value == true then 
+                    game.Players.LocalPlayer.Character.Config.Stunned.Value = false
+                elseif  game.Players.LocalPlayer.Character.CanRecover.Value == false then 
+                    game.Players.LocalPlayer.Character.CanRecover.Value = true
                 end 
-            end
+            end 
         end)
-    end 
+    end
  end)
- 
  while wait() do
      pcall(function()
          local NpcShadow = game.Workspace:FindFirstChild(game.Players.LocalPlayer.Name.."'s Shadow Image")
