@@ -70,7 +70,7 @@ function Library:Window(title)
 
 	Mini.Name = "Mini"
 	Mini.Parent = Top
-	Mini.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+	Mini.BackgroundColor3 = Color3.fromRGB(1, 48, 255)
 	Mini.ClipsDescendants = true
 	Mini.Position = UDim2.new(0.933179677, 0, 0.137931034, 0)
 	Mini.Size = UDim2.new(0, 21, 0, 19)
