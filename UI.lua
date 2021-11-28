@@ -70,7 +70,7 @@ function Library:Window(title)
 
 	Mini.Name = "Mini"
 	Mini.Parent = Top
-	Mini.BackgroundColor3 = Color3.fromRGB(0, 255, 128)
+	Mini.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 	Mini.ClipsDescendants = true
 	Mini.Position = UDim2.new(0.933179677, 0, 0.137931034, 0)
 	Mini.Size = UDim2.new(0, 21, 0, 19)
@@ -84,11 +84,11 @@ function Library:Window(title)
 	UICorner_9.Parent = Mini
 
 	Mini.MouseButton1Click:Connect(function()
-		if Mini.BackgroundColor3 == Color3.fromRGB(0, 255, 128) then
+		if Mini.BackgroundColor3 == Color3.fromRGB(1, 48, 255) then
 			game:GetService("TweenService"):Create(Mini, TweenInfo.new(0.35), {BackgroundColor3 = Color3.fromRGB(255, 0, 102)}):Play()
 			Main:TweenSize(UDim2.new(0, 389,0, 0), "Out", "Quad", 0.4, true)
 		else
-			game:GetService("TweenService"):Create(Mini, TweenInfo.new(0.35), {BackgroundColor3 = Color3.fromRGB(0, 255, 128)}):Play()
+			game:GetService("TweenService"):Create(Mini, TweenInfo.new(0.35), {BackgroundColor3 = Color3.fromRGB(1, 48, 255)}):Play()
 			Main:TweenSize(UDim2.new(0, 389,0, 234), "Out", "Quad", 0.4, true)
 		end
 	end)
@@ -287,7 +287,8 @@ function Library:Window(title)
 		end
 
 		function Lib:Toggle(name,truth,callback)
-			local ToggleBack = Instance.new("Frame")
+			warn("Worked_Deadass")
+            local ToggleBack = Instance.new("Frame")
 			local UICorner_3 = Instance.new("UICorner")
 			local Toggle = Instance.new("TextButton")
 			local ToggleLogo = Instance.new("Frame")
@@ -350,6 +351,7 @@ function Library:Window(title)
 
             local Nib = {}
             function Nib:Refresh(Truth)
+                warn("Worked")
                 if Truth == true then 
                     game:GetService("TweenService"):Create(ToggleLogo, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(1, 48, 255)}):Play()
                 elseif Truth == false then 
@@ -358,7 +360,7 @@ function Library:Window(title)
             end 
 
             return Nib
-            
+
 		end
 
 		function Lib:Slider(name, min, max, start, callback)
