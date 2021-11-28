@@ -147,7 +147,7 @@ function Library:Window(title)
 
 		TabButton.Name = "TabButton"
 		TabButton.Parent = TabHolder
-		TabButton.BackgroundColor3 = Library.TabCount == 0 and Color3.fromRGB(1, 255, 120) or Color3.fromRGB(40, 40, 40)
+		TabButton.BackgroundColor3 = Library.TabCount == 0 and Color3.fromRGB(1, 48, 255) or Color3.fromRGB(40, 40, 40)
 		TabButton.BorderSizePixel = 0
 		TabButton.ClipsDescendants = true
 		TabButton.Position = UDim2.new(0.0357142873, 0, 0.024630541, 0)
@@ -214,7 +214,7 @@ function Library:Window(title)
 					v.TabName.TextColor3 = Color3.fromRGB(255, 255, 255)
 				end
 			end
-			TabButton.BackgroundColor3 = Color3.fromRGB(1, 255, 120)
+			TabButton.BackgroundColor3 = Color3.fromRGB(1, 48, 255)
 			TabName.TextColor3 = Color3.fromRGB(60, 60, 60)
 		end)
 
@@ -286,7 +286,7 @@ function Library:Window(title)
 			end)
 		end
 
-		function Lib:Toggle(name, callback)
+		function Lib:Toggle(name,truth,callback)
 			local ToggleBack = Instance.new("Frame")
 			local UICorner_3 = Instance.new("UICorner")
 			local Toggle = Instance.new("TextButton")
@@ -339,14 +339,26 @@ function Library:Window(title)
 			ToggleName.TextXAlignment = Enum.TextXAlignment.Left
 
 			Toggle.MouseButton1Click:Connect(function()
-				if ToggleLogo.BackgroundColor3 == Color3.fromRGB(255, 255, 255) then
-					game:GetService("TweenService"):Create(ToggleLogo, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(1, 255, 120)}):Play()
+				if ToggleLogo.BackgroundColor3 == Color3.fromRGB(255, 255, 255)  then
+					game:GetService("TweenService"):Create(ToggleLogo, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(1, 48, 255)}):Play()
 					callback(true)
 				else
 					game:GetService("TweenService"):Create(ToggleLogo, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(255, 255, 255)}):Play()
 					callback(false)
 				end
 			end)
+
+            local Nib = {}
+            function Nib:Refresh(Truth)
+                if Truth == true then 
+                    game:GetService("TweenService"):Create(ToggleLogo, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(1, 48, 255)}):Play()
+                elseif Truth == false then 
+                    game:GetService("TweenService"):Create(ToggleLogo, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+                end 
+            end 
+
+            return Nib
+            
 		end
 
 		function Lib:Slider(name, min, max, start, callback)
@@ -385,7 +397,7 @@ function Library:Window(title)
 
 			Slider.Name = "Slider"
 			Slider.Parent = SliderBack
-			Slider.BackgroundColor3 = Color3.fromRGB(1, 255, 120)
+			Slider.BackgroundColor3 = Color3.fromRGB(1, 48, 255)
 			Slider.Size = UDim2.new((start or 0) / max, 0, 1, 0);
 
 			UICorner_6.CornerRadius = UDim.new(0, 3)
