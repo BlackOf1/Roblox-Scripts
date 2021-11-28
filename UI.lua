@@ -287,7 +287,6 @@ function Library:Window(title)
 		end
 
 		function Lib:Toggle(name,truth,callback)
-			warn("Worked_Deadass")
             local ToggleBack = Instance.new("Frame")
 			local UICorner_3 = Instance.new("UICorner")
 			local Toggle = Instance.new("TextButton")
@@ -351,7 +350,6 @@ function Library:Window(title)
 
             local Nib = {}
             function Nib:Refresh(Truth)
-                warn("Worked")
                 if Truth == true then 
                     game:GetService("TweenService"):Create(ToggleLogo, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(1, 48, 255)}):Play()
                 elseif Truth == false then 
