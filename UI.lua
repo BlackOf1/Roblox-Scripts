@@ -350,6 +350,7 @@ function Library:Window(title)
 
             local Nib = {}
             function Nib:Refresh(Truth)
+                print(Truth)
                 if Truth == true then 
                     game:GetService("TweenService"):Create(ToggleLogo, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(1, 48, 255)}):Play()
                 elseif Truth == false then 
