@@ -22,6 +22,7 @@ local Configs = isfile("SaveConfig.json") and game:GetService('HttpService'):JSO
 	Toggle_Button = {false,"None"},
 	M2_Selector = {false,"None"}, 
 	EquipBack = {false,"None"}}))
+warn("Past Of The Past")
 local Themes = {
 	Light = {
 		MainFrame = Color3.fromRGB(255,255,255),
