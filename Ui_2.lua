@@ -7,7 +7,21 @@ local RunService = game:GetService("RunService")
 local InputService = game:GetService("UserInputService")
 local CoreGuiService = game:GetService("CoreGui")
 local ContentService = game:GetService("ContentProvider")
-
+local Configs = isfile("SaveConfig.json") and game:GetService('HttpService'):JSONDecode(readfile("SaveConfig.json")) or writefile("SaveConfig.json", game:GetService('HttpService'):JSONEncode({
+	TeamMode = {false,"None"}, 
+	HeadMode = {false,"None"}, 
+	MouseLockToggle = {false,"None"}, 
+	HitBox = {false,"None"}, 
+	intenttoggle = {false,"None"}, 
+	ScreenLockToggle = {false,"None"}, 
+	AutoTrackToggled = {false,"None"}, 
+	HitBoxStealthMode = {false,"None"},
+	NpcMode = {false,"None"},
+	Main_Hand = {false,"None"}, 
+	Target_Selector = {false,"None"},
+	Toggle_Button = {false,"None"},
+	M2_Selector = {false,"None"}, 
+	EquipBack = {false,"None"}}))
 local Themes = {
 	Light = {
 		MainFrame = Color3.fromRGB(255,255,255),
@@ -1211,12 +1225,28 @@ function Material.Load(Config)
 					DropdownSize = UDim2.fromScale(1,0) + UDim2.fromOffset(DropdownList.AbsoluteContentSize.Y)
 				end
 			end)
+            local function FindInTable(Table,Value)
+                for i,v in pairs(Table) do 
+                    if v == Value then 
+                        return v
+                    elseif type(v) == "table" then 
+                        for i1,v1 in pairs(v) do 
+                            if v1 == Value then 
+                                return i
+                            end 
+                        end 
+                    end 
+                end
+                return nil  
+            end 
 
 			table.foreach(DropdownOptions, function(_, Value)
 				local NewButton = CreateNewButton({
 					Text = Value,
+                    ButtonColor = FindInTable(Configs,Value) == nil and ColorMenu ~= nil and  false or FindInTable(Configs,Value) ~=nil and ColorMenu ~= nil and true or nil
 					Callback = function() end
-				}, DropdownContent or )
+
+				}, DropdownContent)
 				NewButton.Size = UDim2.fromScale(1,0) + UDim2.fromOffset(0,20)
 				NewButton.MouseButton1Down:Connect(function()
 					DropdownCallback(Value)
